@@ -55,8 +55,6 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .secret .class-desc{color:#c5b3d8}
 .class-arrows{display:flex;justify-content:space-between;margin:12px 0}
 .class-arrows button{width:65px;font-size:20px}
-.special-reveal{animation:secretReveal .85s ease}
-@keyframes secretReveal{0%{opacity:0;transform:translateX(80px) scale(.8);filter:brightness(0)}55%{opacity:1;transform:translateX(-8px) scale(1.05);filter:brightness(2)}100%{transform:none;filter:none}}
 .challenge-top{display:flex;justify-content:space-between;font-size:12px;font-weight:900;color:var(--blue)}
 .life-number{font-size:30px;font-weight:900}
 .gauge{display:flex;gap:4px;margin:10px 0 16px}
@@ -86,67 +84,17 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .draw-word{font-size:25px;font-weight:900;margin:28px 0}
 .draw-word.flash{animation:drawFlash .45s ease}
 @keyframes drawFlash{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.2);opacity:1}100%{transform:scale(1)}}
-
-/* 合格エンブレム */
-.pass-emblem{
- width:190px;height:190px;margin:15px auto 20px;
- border-radius:22px;display:flex;flex-direction:column;
- align-items:center;justify-content:center;position:relative;
- overflow:hidden;border:5px solid #ffffff80;
- box-shadow:0 7px 20px #17233c30,inset 0 0 0 2px #ffffff65;
-}
-.pass-emblem:before{
- content:"";position:absolute;inset:9px;
- border:2px solid #ffffffa8;border-radius:15px;
-}
-.pass-emblem:after{
- content:"";position:absolute;inset:16px;
- border:1px solid #ffffff75;border-radius:11px;
-}
-
-/* 背景色はランク名の後半で決定 */
-.pass-emblem.red-silver,
-.pass-emblem.gold-silver{
- background:linear-gradient(145deg,#e4e7ed,#9ca6b5,#edf0f5,#8e9aab);
-}
-.pass-emblem.red-gold,
-.pass-emblem.gold-gold{
- background:linear-gradient(145deg,#fff0a8,#c18b25,#ffe18a,#a66d12);
-}
-.pass-emblem.gold-rainbow{
- background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed);
-}
-
-/* 文字色はランク名の前半で決定 */
-.pass-emblem.red-silver .emblem-class,
-.pass-emblem.red-silver .emblem-label,
-.pass-emblem.red-gold .emblem-class,
-.pass-emblem.red-gold .emblem-label{
- color:#d52335;
- text-shadow:0 1px 2px #ffffff90;
-}
-.pass-emblem.gold-silver .emblem-class,
-.pass-emblem.gold-silver .emblem-label,
-.pass-emblem.gold-gold .emblem-class,
-.pass-emblem.gold-gold .emblem-label,
-.pass-emblem.gold-rainbow .emblem-class,
-.pass-emblem.gold-rainbow .emblem-label{
- color:#ffe69a;
- text-shadow:0 2px 3px #81500a;
-}
-
-.emblem-class{
- position:relative;z-index:1;font-size:58px;font-weight:1000;
- line-height:1.1;
-}
-.emblem-label{
- position:relative;z-index:1;margin-top:9px;font-size:27px;
- font-weight:1000;letter-spacing:5px;
-}
-.emblem-caption{
- position:relative;z-index:1;font-size:9px;font-weight:900;
- letter-spacing:2px;color:#26334a;margin-top:5px
-}
+.pass-emblem{width:190px;height:190px;margin:15px auto 20px;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;border:5px solid #ffffff80;box-shadow:0 7px 20px #17233c30,inset 0 0 0 2px #ffffff65}
+.pass-emblem:before{content:"";position:absolute;inset:9px;border:2px solid #ffffffa8;border-radius:15px}
+.pass-emblem:after{content:"";position:absolute;inset:16px;border:1px solid #ffffff75;border-radius:11px}
+.pass-emblem.red-silver,.pass-emblem.gold-silver{background:linear-gradient(145deg,#e4e7ed,#9ca6b5,#edf0f5,#8e9aab)}
+.pass-emblem.red-gold,.pass-emblem.gold-gold{background:linear-gradient(145deg,#fff0a8,#c18b25,#ffe18a,#a66d12)}
+.pass-emblem.gold-rainbow{background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed)}
+.pass-emblem.red-silver .emblem-class,.pass-emblem.red-silver .emblem-label,.pass-emblem.red-gold .emblem-class,.pass-emblem.red-gold .emblem-label{color:#d52335;text-shadow:0 1px 2px #ffffff90}
+.pass-emblem.gold-silver .emblem-class,.pass-emblem.gold-silver .emblem-label,.pass-emblem.gold-gold .emblem-class,.pass-emblem.gold-gold .emblem-label,.pass-emblem.gold-rainbow .emblem-class,.pass-emblem.gold-rainbow .emblem-label{color:#ffe69a;text-shadow:0 2px 3px #81500a}
+.emblem-class{position:relative;z-index:1;font-size:58px;font-weight:1000;line-height:1.1}
+.emblem-label{position:relative;z-index:1;margin-top:9px;font-size:27px;font-weight:1000;letter-spacing:5px}
+.emblem-caption{position:relative;z-index:1;font-size:9px;font-weight:900;letter-spacing:2px;color:#26334a;margin-top:5px}
 .result-status{font-size:34px;font-weight:1000}
 .result-status.fail{color:#397ce9}
 .record{padding:13px 0;border-bottom:1px solid #edf0f5}
@@ -156,54 +104,24 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .record.clickable:active{background:#f3f6fc}
 .record.clickable:after{content:"›";position:absolute;right:10px;top:25px;color:var(--blue);font-size:22px;font-weight:900}
 .tag{display:inline-block;padding:5px 9px;border-radius:20px;background:#edf2fa;color:#64738c;font-size:10px;font-weight:900}
-.tag.unplayed{background:#fff0d7;color:#b47a19}
-.detail-row{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #edf0f5;font-size:12px}
-.stat-song{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #edf0f5;font-size:12px}
-.stat-song span:last-child{text-align:right;white-space:nowrap;font-weight:800}
-
-/* 記録メニュー */
 .stat-menu{display:grid;gap:10px;margin:12px 0}
-.stat-menu button{
- width:100%;background:white;color:var(--ink);text-align:left;
- padding:17px 18px;border:1px solid #e5ebf4;
- box-shadow:0 4px 15px #203b6409;display:flex;
- align-items:center;justify-content:space-between;
-}
-.stat-menu button:active{background:#edf3ff}
+.stat-menu button{width:100%;background:white;color:var(--ink);text-align:left;padding:17px 18px;border:1px solid #e5ebf4;box-shadow:0 4px 15px #203b6409;display:flex;align-items:center;justify-content:space-between}
 .stat-menu button span:last-child{color:var(--blue);font-size:20px}
 .stat-section{display:none}
 .stat-section.open{display:block;animation:fade .25s ease}
 .stat-section .panel{margin-top:10px}
 .stat-heading{font-size:13px;font-weight:900;margin:5px 0 12px}
-
-/* 履歴用の小型エンブレム */
-.badge-small{
- display:inline-flex;align-items:center;justify-content:center;
- min-width:43px;height:43px;border-radius:9px;
- font-size:11px;font-weight:1000;border:2px solid #ffffffa0;
- vertical-align:middle;margin-right:7px;
-}
-.badge-small.red-silver,
-.badge-small.gold-silver{
- background:linear-gradient(145deg,#e4e7ed,#9ca6b5,#edf0f5);
-}
-.badge-small.red-gold,
-.badge-small.gold-gold{
- background:linear-gradient(145deg,#fff0a8,#c18b25,#ffe18a);
-}
-.badge-small.gold-rainbow{
- background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed);
-}
-.badge-small.red-silver,
-.badge-small.red-gold{color:#d52335}
-.badge-small.gold-silver,
-.badge-small.gold-gold,
-.badge-small.gold-rainbow{color:#ffe69a}
-
+.badge-small{display:inline-flex;align-items:center;justify-content:center;min-width:43px;height:43px;border-radius:9px;font-size:11px;font-weight:1000;border:2px solid #ffffffa0;vertical-align:middle;margin-right:7px}
+.badge-small.red-silver,.badge-small.gold-silver{background:linear-gradient(145deg,#e4e7ed,#9ca6b5,#edf0f5)}
+.badge-small.red-gold,.badge-small.gold-gold{background:linear-gradient(145deg,#fff0a8,#c18b25,#ffe18a)}
+.badge-small.gold-rainbow{background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed)}
+.badge-small.red-silver,.badge-small.red-gold{color:#d52335}
+.badge-small.gold-silver,.badge-small.gold-gold,.badge-small.gold-rainbow{color:#ffe69a}
 .loading{position:fixed;inset:0;background:var(--bg);z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .loadbar{width:180px;height:5px;background:#dce6f6;border-radius:9px;margin-top:20px;overflow:hidden}
 .loadbar div{height:100%;width:0;background:var(--blue);animation:load 1s linear forwards}
 @keyframes load{to{width:100%}}
+.share-note{text-align:center;font-size:11px;color:var(--muted);margin:5px 0 10px}
 </style>
 </head>
 <body>
@@ -314,6 +232,8 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
   <div class="result-status fail" id="resultStatus">不合格</div>
   <div class="life-number" id="resultLife"></div>
   <p class="muted" id="resultClass"></p>
+  <button class="primary full" id="shareButton" onclick="shareResult()">結果を共有する</button>
+  <p class="share-note">結果を1枚の画像にして共有できます</p>
  </div>
  <div class="panel">
   <div class="section-title">TRACK RESULTS</div>
@@ -335,10 +255,7 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
   <button onclick="toggleStat('historySection')"><span>▤　挑戦履歴</span><span>›</span></button>
  </div>
  <div class="stat-section" id="classStatsSection">
-  <div class="panel">
-   <div class="stat-heading">CLASS PERFORMANCE</div>
-   <div id="classStats"></div>
-  </div>
+  <div class="panel"><div class="stat-heading">CLASS PERFORMANCE</div><div id="classStats"></div></div>
  </div>
  <div class="stat-section" id="songStatsSection">
   <div class="panel">
@@ -398,27 +315,21 @@ let drawAction="start";
 let drawTimer=null;
 
 function safeParse(key,fallback){
- try{
-  const value=JSON.parse(localStorage.getItem(key));
-  return value===null?fallback:value;
- }catch(e){return fallback;}
+ try{const value=JSON.parse(localStorage.getItem(key));return value===null?fallback:value;}
+ catch(e){return fallback;}
 }
 let history=safeParse("holoHistory",[]);
 let stats=safeParse("holoStats",{
  attempts:0,passes:0,best:0,appearances:{},totalDraws:0,byClass:{}
 });
-
 stats.appearances=stats.appearances||{};
 stats.totalDraws=stats.totalDraws||0;
 stats.byClass=stats.byClass||{};
 
 function ensureClassStats(name){
- if(!stats.byClass[name]){
-  stats.byClass[name]={attempts:0,passes:0,best:0};
- }
+ if(!stats.byClass[name])stats.byClass[name]={attempts:0,passes:0,best:0};
  return stats.byClass[name];
 }
-
 function save(){
  localStorage.setItem("holoHistory",JSON.stringify(history));
  localStorage.setItem("holoStats",JSON.stringify(stats));
@@ -427,17 +338,13 @@ function save(){
 function escapeHTML(s){
  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-function levelText(level){
- return Array.isArray(level)?level[0]+"〜"+level[1]:String(level);
-}
+function levelText(level){return Array.isArray(level)?level[0]+"〜"+level[1]:String(level);}
 function go(id){
  if(drawTimer){clearInterval(drawTimer);drawTimer=null;}
  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
  document.getElementById(id).classList.add("active");
  document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
- if(["home","classes","history"].includes(id)){
-  document.getElementById("tab-"+id).classList.add("active");
- }
+ if(["home","classes","history"].includes(id))document.getElementById("tab-"+id).classList.add("active");
  if(id==="home")renderHome();
  if(id==="classes")renderClass();
  if(id==="history")renderHistory();
@@ -466,6 +373,7 @@ function renderRail(){
  }
 }
 function renderClass(){
+ if(selected===6&&!secretUnlocked)selected=5;
  renderRail();
  const c=classes[selected];
  const card=document.getElementById("classCard");
@@ -474,41 +382,27 @@ function renderClass(){
  document.getElementById("classSymbol").textContent=c.name;
  document.getElementById("classLife").textContent="LIFE "+c.life;
  document.getElementById("classLevels").innerHTML=c.levels.map((v,i)=>`
-  <div class="level-cell">
-   <small>${["1ST","2ND","3RD"][i]} TRACK</small>
-   <strong>Lv.${levelText(v)}</strong>
-  </div>`).join("");
+  <div class="level-cell"><small>${["1ST","2ND","3RD"][i]} TRACK</small><strong>Lv.${levelText(v)}</strong></div>`).join("");
 }
 function moveClass(dir){
  if(selected===5&&dir===1&&!secretUnlocked){
   unlockCount++;
   if(unlockCount>=5){
-   secretUnlocked=true;
-   selected=6;
-   save();
-   renderClass();
+   secretUnlocked=true;selected=6;save();renderClass();
    const card=document.getElementById("classCard");
    card.classList.add("special-reveal");
    setTimeout(()=>card.classList.remove("special-reveal"),900);
    return;
   }
-  renderClass();
-  return;
+  renderClass();return;
  }
- if(selected===6&&dir===-1){
-  selected=5;
- }else{
-  unlockCount=0;
-  selected=Math.max(0,Math.min(secretUnlocked?6:5,selected+dir));
- }
+ if(selected===6&&dir===-1){selected=5;}
+ else{unlockCount=0;selected=Math.max(0,Math.min(secretUnlocked?6:5,selected+dir));}
  renderClass();
 }
 function confirmClass(){
  const c=classes[selected];
- if(!c.ready){
-  alert("このクラスの曲リストは準備中です！");
-  return;
- }
+ if(!c.ready){alert("このクラスの曲リストは準備中です！");return;}
  document.getElementById("confirmName").textContent="CLASS "+c.name;
  document.getElementById("confirmLife").textContent="LIFE "+c.life;
  go("confirm");
@@ -534,72 +428,40 @@ function animateDraw(action){
  btn.style.display="none";
  btn.textContent=action==="start"?"挑戦する":"次の曲へ！";
  const messages=["抽選中...","SELECTING...","READY?","抽選完了！"];
- let n=0;
- txt.textContent=messages[0];
+ let n=0;txt.textContent=messages[0];
  if(drawTimer)clearInterval(drawTimer);
  drawTimer=setInterval(()=>{
   txt.textContent=messages[Math.min(n,3)];
-  txt.classList.remove("flash");
-  void txt.offsetWidth;
-  txt.classList.add("flash");
+  txt.classList.remove("flash");void txt.offsetWidth;txt.classList.add("flash");
   n++;
-  if(n>=4){
-   clearInterval(drawTimer);
-   drawTimer=null;
-   btn.style.display="block";
-  }
+  if(n>=4){clearInterval(drawTimer);drawTimer=null;btn.style.display="block";}
  },450);
 }
 function drawSongs(){
  const c=classes[selected];
  try{
-  const result=c.levels.map(pickSong);
-  if(result.length!==3)throw new Error("3曲を抽選できませんでした");
-  chosen=result;
- }catch(e){
-  alert("抽選に失敗しました："+e.message);
-  return;
- }
-
+  chosen=c.levels.map(pickSong);
+ }catch(e){alert("抽選に失敗しました："+e.message);return;}
  countSongDraws(chosen);
- track=0;
- life=c.life;
- lifeMax=c.life;
- trackResults=[];
- currentId=Date.now();
+ track=0;life=c.life;lifeMax=c.life;trackResults=[];currentId=Date.now();
  activeRecord={
   id:currentId,className:c.name,life:c.life,lifeMax:c.life,
   played:false,finished:false,tracks:[],chosen:chosen,
   date:new Date().toLocaleString("ja-JP"),counted:false
  };
- history.unshift(activeRecord);
- history=history.slice(0,10);
- save();
- go("draw");
- animateDraw("start");
+ history.unshift(activeRecord);history=history.slice(0,10);save();
+ go("draw");animateDraw("start");
 }
 function advanceDraw(){
- const btn=document.getElementById("drawNext");
- btn.disabled=true;
- if(drawAction==="start"){
-  startChallenge();
- }else{
-  showTrack();
-  go("challenge");
- }
+ const btn=document.getElementById("drawNext");btn.disabled=true;
+ if(drawAction==="start")startChallenge();
+ else{showTrack();go("challenge");}
  btn.disabled=false;
 }
 function startChallenge(){
  if(!activeRecord||!chosen.length)return;
- if(!activeRecord.counted){
-  stats.attempts++;
-  ensureClassStats(activeRecord.className).attempts++;
-  activeRecord.counted=true;
- }
- activeRecord.played=true;
- save();
- showTrack();
- go("challenge");
+ if(!activeRecord.counted){stats.attempts++;ensureClassStats(activeRecord.className).attempts++;activeRecord.counted=true;}
+ activeRecord.played=true;save();showTrack();go("challenge");
 }
 function showTrack(){
  const c=classes.find(x=>x.name===activeRecord.className)||classes[selected];
@@ -615,22 +477,15 @@ function showTrack(){
  document.getElementById("songDiff").className="diff "+song.diff;
  document.getElementById("songCard").classList.toggle("secret",!!c.secret);
  const card=document.getElementById("songCard");
- card.classList.remove("reveal");
- void card.offsetWidth;
- card.classList.add("reveal");
+ card.classList.remove("reveal");void card.offsetWidth;card.classList.add("reveal");
  ["great","good","bad","miss"].forEach(id=>document.getElementById(id).value=0);
  renderGauge();
 }
 function renderGauge(){
- const gauge=document.getElementById("gauge");
- gauge.innerHTML="";
+ const gauge=document.getElementById("gauge");gauge.innerHTML="";
  const color=life<=lifeMax/3?"red":life<=lifeMax*2/3?"yellow":"green";
  gauge.className="gauge "+color;
- for(let i=0;i<lifeMax;i++){
-  const s=document.createElement("span");
-  if(i<life)s.classList.add("on");
-  gauge.appendChild(s);
- }
+ for(let i=0;i<lifeMax;i++){const s=document.createElement("span");if(i<life)s.classList.add("on");gauge.appendChild(s);}
 }
 function changeCount(id,delta){
  const input=document.getElementById(id);
@@ -640,106 +495,51 @@ function submitTrack(){
  if(!activeRecord||track>=3)return;
  const counts={};
  ["great","good","bad","miss"].forEach(id=>{
-  const raw=document.getElementById(id).value;
-  counts[id]=Math.max(0,Math.floor(Number(raw)||0));
+  counts[id]=Math.max(0,Math.floor(Number(document.getElementById(id).value)||0));
  });
  const lost=counts.great+counts.good*2+counts.bad*3+counts.miss*5;
  life=Math.max(0,life-lost);
-
  const ap=Object.values(counts).every(v=>v===0);
-
- // FCはGOOD・BAD・MISSがすべて0。
- // APもこの条件を満たすため、FC以上として扱う。
  const fc=counts.good===0&&counts.bad===0&&counts.miss===0;
-
- const label=ap?"ALL PERFECT":fc?"FULL COMBO":"";
- trackResults.push({song:chosen[track],counts,lost,life,ap,fc,label});
- activeRecord.tracks=trackResults.slice();
- activeRecord.life=life;
- save();
-
- if(life===0){
-  finishChallenge();
-  return;
- }
-
+ trackResults.push({song:chosen[track],counts,lost,life,ap,fc,label:ap?"ALL PERFECT":fc?"FULL COMBO":""});
+ activeRecord.tracks=trackResults.slice();activeRecord.life=life;save();
+ if(life===0){finishChallenge();return;}
  track++;
- if(track<3){
-  go("draw");
-  animateDraw("next");
- }else{
-  finishChallenge();
- }
+ if(track<3){go("draw");animateDraw("next");}
+ else{finishChallenge();}
 }
 function leaveChallenge(){
  if(!confirm("ここまでの結果を保存して中断しますか？"))return;
  if(activeRecord){
-  activeRecord.tracks=trackResults.slice();
-  activeRecord.life=life;
-  activeRecord.played=trackResults.length>0;
-  activeRecord.finished=false;
-  save();
+  activeRecord.tracks=trackResults.slice();activeRecord.life=life;
+  activeRecord.played=trackResults.length>0;activeRecord.finished=false;save();
  }
  go("home");
 }
-
-/* 合格ランク判定 */
 function getBadgeRank(record){
  if(!record.passed)return "";
-
  const tracks=record.tracks||[];
-
- const allAP=
-  tracks.length===3&&
-  tracks.every(t=>t.ap);
-
- // 過去の記録との互換性も考慮
- const allFC=
-  tracks.length===3&&
-  tracks.every(t=>t.ap||t.fc);
-
- // 全曲APなら、金合格条件に関係なく金文字・虹背景
+ const allAP=tracks.length===3&&tracks.every(t=>t.ap);
+ const allFC=tracks.length===3&&tracks.every(t=>t.ap||t.fc);
  if(allAP)return "gold-rainbow";
-
- // 金合格条件：クラスⅩでLIFE15以上残し
- const goldCondition=
-  record.className==="Ⅹ"&&record.life>=15;
-
- if(goldCondition){
-  // 金合格条件達成
-  return allFC?"gold-gold":"gold-silver";
- }
-
- // 金合格条件未達
+ const goldCondition=record.className==="Ⅹ"&&record.life>=15;
+ if(goldCondition)return allFC?"gold-gold":"gold-silver";
  return allFC?"red-gold":"red-silver";
 }
-
 function finishChallenge(){
  if(!activeRecord||activeRecord.finished)return;
-
  const passed=trackResults.length===3&&life>=1;
  const allAP=trackResults.length===3&&trackResults.every(t=>t.ap);
  const allFC=trackResults.length===3&&trackResults.every(t=>t.ap||t.fc);
  const classStat=ensureClassStats(activeRecord.className);
-
- if(passed){
-  stats.passes++;
-  classStat.passes++;
- }
- stats.best=Math.max(stats.best,life);
- classStat.best=Math.max(classStat.best,life);
-
- activeRecord.tracks=trackResults.slice();
- activeRecord.life=life;
- activeRecord.passed=passed;
- activeRecord.finished=true;
- activeRecord.played=true;
+ if(passed){stats.passes++;classStat.passes++;}
+ stats.best=Math.max(stats.best,life);classStat.best=Math.max(classStat.best,life);
+ activeRecord.tracks=trackResults.slice();activeRecord.life=life;
+ activeRecord.passed=passed;activeRecord.finished=true;activeRecord.played=true;
  activeRecord.rank=allAP?"AP":allFC?"FC":"NORMAL";
  activeRecord.badge=getBadgeRank(activeRecord);
- save();
- showResult(activeRecord);
+ save();showResult(activeRecord);
 }
-
 function emblemHTML(className,rank){
  if(!rank)return "";
  return `<div class="pass-emblem ${rank}">
@@ -748,36 +548,20 @@ function emblemHTML(className,rank){
   <div class="emblem-caption">HOLODORI CLASS</div>
  </div>`;
 }
-
 function smallBadgeHTML(record){
  if(!record.finished||!record.passed)return "";
-
- // 保存済みの古いbadgeではなく、現在のルールで再判定
  const rank=getBadgeRank(record);
-
  return `<span class="badge-small ${rank}">${escapeHTML(record.className)}</span>`;
 }
-
 function showResult(r){
  const status=document.getElementById("resultStatus");
-
- // 合格時はエンブレムだけを表示
  status.textContent=r.passed?"":"不合格";
  status.style.display=r.passed?"none":"block";
  status.className="result-status fail";
-
- document.getElementById("resultEmblem").innerHTML=
-  r.passed?emblemHTML(r.className,getBadgeRank(r)):"";
-
- document.getElementById("resultLife").textContent=
-  "LIFE "+r.life+" / "+r.lifeMax;
-
- document.getElementById("resultClass").textContent=
-  "CLASS "+r.className;
-
- document.getElementById("retryPrompt").textContent=
-  r.passed?"もう一度挑戦しますか？":"不合格！同じ3曲に再挑戦しますか？";
-
+ document.getElementById("resultEmblem").innerHTML=r.passed?emblemHTML(r.className,getBadgeRank(r)):"";
+ document.getElementById("resultLife").textContent="LIFE "+r.life+" / "+r.lifeMax;
+ document.getElementById("resultClass").textContent="CLASS "+r.className;
+ document.getElementById("retryPrompt").textContent=r.passed?"もう一度挑戦しますか？":"不合格！同じ3曲に再挑戦しますか？";
  document.getElementById("resultTracks").innerHTML=r.tracks.map((t,i)=>`
   <div class="record">
    <strong>${i+1}. ${escapeHTML(t.song.title)}　Lv.${t.song.level}</strong>
@@ -788,31 +572,186 @@ function showResult(r){
  go("result");
 }
 
+/* 共有画像を同期的に生成する */
+function makeShareImage(record){
+ const canvas=document.createElement("canvas");
+ canvas.width=1080;canvas.height=1350;
+ const ctx=canvas.getContext("2d");
+ const bg=ctx.createLinearGradient(0,0,1080,1350);
+ bg.addColorStop(0,"#edf4ff");bg.addColorStop(1,"#dce8fb");
+ ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);
+
+ ctx.textAlign="center";
+ ctx.fillStyle="#397ce9";ctx.font="900 30px sans-serif";
+ ctx.fillText("HOLODORI / CREATIVE CLASS",540,78);
+ ctx.fillStyle="#19263e";ctx.font="900 43px sans-serif";
+ ctx.fillText("CLASS CERTIFICATION",540,135);
+
+ const rank=record.passed?getBadgeRank(record):"";
+ const colors={
+  "red-silver":["#e4e7ed","#9ca6b5","#edf0f5"],
+  "gold-silver":["#e4e7ed","#9ca6b5","#edf0f5"],
+  "red-gold":["#fff0a8","#c18b25","#ffe18a"],
+  "gold-gold":["#fff0a8","#c18b25","#ffe18a"],
+  "gold-rainbow":["#ff6475","#55d6a0","#579bff"]
+ };
+ const palette=colors[rank]||["#dfe7f3","#aebbd0","#e8eef8"];
+ const grad=ctx.createLinearGradient(300,180,780,600);
+ palette.forEach((c,i)=>grad.addColorStop(i/(palette.length-1),c));
+
+ ctx.beginPath();ctx.roundRect(330,175,420,420,42);
+ ctx.fillStyle=grad;ctx.fill();
+ ctx.strokeStyle="#ffffff";ctx.lineWidth=10;ctx.stroke();
+ ctx.beginPath();ctx.roundRect(352,197,376,376,30);
+ ctx.strokeStyle="#ffffffb0";ctx.lineWidth=5;ctx.stroke();
+
+ ctx.fillStyle=rank&&rank.startsWith("red")?"#d52335":"#fff0a8";
+ ctx.font="1000 155px sans-serif";
+ ctx.shadowColor="#60431d";ctx.shadowBlur=8;
+ ctx.fillText(record.className,540,390);
+ ctx.font="1000 75px sans-serif";
+ ctx.fillText(record.passed?"合格":"不合格",540,490);
+ ctx.shadowBlur=0;
+
+ ctx.fillStyle="#19263e";ctx.font="900 42px sans-serif";
+ ctx.fillText("LIFE  "+record.life+" / "+record.lifeMax,540,675);
+ ctx.fillStyle="#6d7d96";ctx.font="bold 25px sans-serif";
+ ctx.fillText("CLASS "+record.className,540,725);
+
+ ctx.beginPath();ctx.roundRect(75,770,930,450,30);
+ ctx.fillStyle="#ffffff";ctx.fill();
+ ctx.strokeStyle="#dce6f5";ctx.lineWidth=3;ctx.stroke();
+
+ ctx.textAlign="left";
+ ctx.fillStyle="#397ce9";ctx.font="900 27px sans-serif";
+ ctx.fillText("TRACK RESULTS",115,825);
+
+ (record.tracks||[]).forEach((t,i)=>{
+  const y=875+i*108;
+  ctx.fillStyle="#19263e";ctx.font="900 26px sans-serif";
+  let title=(i+1)+". "+t.song.title;
+  while(ctx.measureText(title).width>790&&title.length>5){
+   title=title.slice(0,-2)+"…";
+  }
+  ctx.fillText(title,115,y);
+  ctx.textAlign="right";ctx.fillStyle="#397ce9";
+  ctx.font="900 24px sans-serif";
+  ctx.fillText("Lv."+t.song.level,965,y);
+  ctx.textAlign="left";ctx.fillStyle="#7c8ba2";
+  ctx.font="bold 20px sans-serif";
+  ctx.fillText("GREAT "+t.counts.great+"  GOOD "+t.counts.good+"  BAD "+t.counts.bad+"  MISS "+t.counts.miss,115,y+35);
+  ctx.fillStyle=t.ap?"#8a65dc":t.fc?"#e19b36":"#8490a5";
+  ctx.font="900 20px sans-serif";
+  ctx.fillText(t.ap?"ALL PERFECT":t.fc?"FULL COMBO":"CLEAR",115,y+68);
+ });
+
+ ctx.textAlign="center";
+ ctx.fillStyle="#8490a5";ctx.font="bold 21px sans-serif";
+ ctx.fillText("きなまる式 ホロドリ非公式クラス認定",540,1290);
+ return canvas.toDataURL("image/png");
+}
+
+/* iPhoneの共有メニューをボタン操作から直接呼び出す */
+function shareResult(){
+ const button=document.getElementById("shareButton");
+
+ if(!activeRecord||!activeRecord.finished){
+  alert("共有できる結果がありません。");
+  return;
+ }
+
+ try{
+  button.disabled=true;
+  button.textContent="画像を作成中...";
+
+  // 画像生成は同期処理なので、共有ボタンの操作権限を維持する
+  const dataURL=makeShareImage(activeRecord);
+  const base64=dataURL.split(",")[1];
+  const binary=atob(base64);
+  const bytes=new Uint8Array(binary.length);
+
+  for(let i=0;i<binary.length;i++){
+   bytes[i]=binary.charCodeAt(i);
+  }
+
+  const file=new File(
+   [bytes],
+   "holodori-result.png",
+   {type:"image/png"}
+  );
+
+  if(navigator.share){
+   const shareData={
+    files:[file],
+    title:"ホロドリ クラス認定結果"
+   };
+
+   if(!navigator.canShare||navigator.canShare(shareData)){
+    // awaitを挟まず、クリック直後に共有処理を開始
+    const sharing=navigator.share(shareData);
+    sharing.catch(error=>{
+     if(error.name!=="AbortError"){
+      alert("共有に失敗しました："+error.message);
+     }
+    });
+   }else{
+    showShareImage(dataURL);
+   }
+  }else{
+   showShareImage(dataURL);
+  }
+
+ }catch(error){
+  alert("共有画像を作成できませんでした："+error.message);
+  console.error(error);
+ }finally{
+  button.disabled=false;
+  button.textContent="結果を共有する";
+ }
+}
+
+function showShareImage(dataURL){
+ const win=window.open();
+ if(win){
+  win.document.write(`
+   <!DOCTYPE html>
+   <html lang="ja">
+   <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ホロドリ結果画像</title>
+    <style>
+     body{margin:0;background:#19263e;display:flex;align-items:center;justify-content:center;min-height:100vh}
+     img{width:100%;height:auto;object-fit:contain}
+    </style>
+   </head>
+   <body><img src="${dataURL}" alt="認定結果"></body>
+   </html>
+  `);
+  win.document.close();
+  alert("画像を表示したよ！画像を長押しして保存してね。");
+ }else{
+  const a=document.createElement("a");
+  a.href=dataURL;
+  a.download="holodori-result.png";
+  a.click();
+  alert("画像を保存する操作を試みたよ。");
+ }
+}
+
 function retryChallenge(){
  if(!activeRecord||!activeRecord.chosen)return;
  const previous=activeRecord;
- chosen=previous.chosen.slice();
- track=0;
- trackResults=[];
- life=previous.lifeMax;
- lifeMax=previous.lifeMax;
- currentId=Date.now();
-
+ chosen=previous.chosen.slice();track=0;trackResults=[];
+ life=previous.lifeMax;lifeMax=previous.lifeMax;currentId=Date.now();
  activeRecord={
   id:currentId,className:previous.className,life,lifeMax,
   played:true,finished:false,tracks:[],chosen:chosen,
   date:new Date().toLocaleString("ja-JP"),counted:true
  };
-
- stats.attempts++;
- ensureClassStats(activeRecord.className).attempts++;
- history.unshift(activeRecord);
- history=history.slice(0,10);
- save();
- showTrack();
- go("challenge");
+ stats.attempts++;ensureClassStats(activeRecord.className).attempts++;
+ history.unshift(activeRecord);history=history.slice(0,10);save();
+ showTrack();go("challenge");
 }
-
 function renderHome(){
  document.getElementById("homeAttempts").textContent=stats.attempts;
  document.getElementById("homePasses").textContent=stats.passes;
@@ -826,33 +765,22 @@ function renderHome(){
    <small>タップして詳細を見る ›</small>
   </div>`:"まだ記録がありません。";
 }
-
 function renderHistory(){
  const classStats=document.getElementById("classStats");
  classStats.innerHTML=classes.map(c=>{
   const s=stats.byClass[c.name]||{attempts:0,passes:0,best:0};
   const rate=s.attempts?Math.round(s.passes/s.attempts*100)+"%":"—";
-  return `<div class="detail-row">
-   <span>CLASS ${c.name}</span>
-   <strong>${s.passes}/${s.attempts} 合格　${rate}</strong>
-  </div>
+  return `<div class="detail-row"><span>CLASS ${c.name}</span><strong>${s.passes}/${s.attempts} 合格　${rate}</strong></div>
   <div class="muted" style="text-align:right;margin:3px 0 9px">最高残りLIFE：${s.attempts?s.best:"—"}</div>`;
  }).join("");
-
  document.getElementById("songDrawTotal").textContent=stats.totalDraws||0;
  const songStats=document.getElementById("songStats");
  const entries=Object.entries(stats.appearances||{}).sort((a,b)=>b[1]-a[1]);
  songStats.innerHTML=entries.length?entries.map(([key,count])=>{
-  const split=key.lastIndexOf("|");
-  const title=key.slice(0,split);
-  const level=key.slice(split+1);
+  const split=key.lastIndexOf("|");const title=key.slice(0,split);const level=key.slice(split+1);
   const rate=stats.totalDraws?((count/stats.totalDraws)*100).toFixed(1):"0.0";
-  return `<div class="stat-song">
-   <span>${escapeHTML(title)} <small class="muted">Lv.${escapeHTML(level)}</small></span>
-   <span>${count}回<br><small class="muted">${rate}%</small></span>
-  </div>`;
+  return `<div class="stat-song"><span>${escapeHTML(title)} <small class="muted">Lv.${escapeHTML(level)}</small></span><span>${count}回<br><small class="muted">${rate}%</small></span></div>`;
  }).join(""):"<p class='muted'>まだ抽選データがありません。</p>";
-
  const list=document.getElementById("historyList");
  list.innerHTML=history.length?history.map(r=>`
   <div class="record clickable" role="button" tabindex="0"
@@ -864,29 +792,18 @@ function renderHistory(){
    <small>タップして詳細を見る</small>
   </div>`).join(""):"記録はありません。";
 }
-
 function openDetail(id){
- const r=history.find(x=>x.id===id);
- if(!r)return;
-
- // 履歴詳細も現在の判定ルールで再計算
+ const r=history.find(x=>x.id===id);if(!r)return;
  const rank=getBadgeRank(r);
-
  const tracks=[0,1,2].map(i=>{
-  const t=(r.tracks||[])[i];
-  let title="?";
+  const t=(r.tracks||[])[i];let title="?";
   if(t)title=escapeHTML(t.song.title)+" Lv."+t.song.level;
-  else if(r.chosen&&r.chosen[i]){
-   title=escapeHTML(r.chosen[i].title)+" Lv."+r.chosen[i].level;
-  }
-  return `<div class="record">
-   <strong>${i+1}曲目：${title}</strong>
+  else if(r.chosen&&r.chosen[i])title=escapeHTML(r.chosen[i].title)+" Lv."+r.chosen[i].level;
+  return `<div class="record"><strong>${i+1}曲目：${title}</strong>
    <small>${t?`GREAT ${t.counts.great} / GOOD ${t.counts.good} / BAD ${t.counts.bad} / MISS ${t.counts.miss}`:"未プレイ"}</small>
    <small>${t?(t.ap?"ALL PERFECT":t.fc?"FULL COMBO":"通常クリア"):"—"}</small>
-   ${t?`<small>−${t.lost} LIFE → 残り ${t.life}</small>`:""}
-  </div>`;
+   ${t?`<small>−${t.lost} LIFE → 残り ${t.life}</small>`:""}</div>`;
  }).join("");
-
  document.getElementById("detailContent").innerHTML=`
   ${r.finished&&r.passed?emblemHTML(r.className,rank):""}
   <div class="big">CLASS ${escapeHTML(r.className)}</div>
@@ -898,63 +815,43 @@ function openDetail(id){
   <button class="secondary full" onclick="deleteRecord(${r.id});go('history');toggleStat('historySection',true)">この記録を削除</button>`;
  go("detail");
 }
-
 function resumeRecord(id){
  const r=history.find(x=>x.id===id);
  if(!r||r.finished)return;
- if(!r.chosen||!r.chosen.length){
-  alert("曲情報が見つかりません。");
-  return;
- }
- activeRecord=r;
- currentId=id;
- chosen=r.chosen;
- selected=classes.findIndex(c=>c.name===r.className);
- if(selected<0)selected=5;
- if(selected===6){
-  secretUnlocked=true;
-  save();
- }
- trackResults=r.tracks||[];
- life=r.life;
- lifeMax=r.lifeMax;
- track=trackResults.length;
- if(track>=3){
-  alert("この記録は終了しています。");
-  return;
- }
- if(!r.counted&&r.played){
-  r.counted=true;
-  stats.attempts++;
-  ensureClassStats(r.className).attempts++;
- }
- r.played=true;
- save();
- if(track===0&&trackResults.length===0){
-  go("draw");
-  animateDraw("start");
- }else{
-  showTrack();
-  go("challenge");
- }
+ if(!r.chosen||!r.chosen.length){alert("曲情報が見つかりません。");return;}
+ activeRecord=r;currentId=id;chosen=r.chosen;
+ selected=classes.findIndex(c=>c.name===r.className);if(selected<0)selected=5;
+ if(selected===6){secretUnlocked=true;save();}
+ trackResults=r.tracks||[];life=r.life;lifeMax=r.lifeMax;track=trackResults.length;
+ if(track>=3){alert("この記録は終了しています。");return;}
+ if(!r.counted&&r.played){r.counted=true;stats.attempts++;ensureClassStats(r.className).attempts++;}
+ r.played=true;save();
+ if(track===0&&trackResults.length===0){go("draw");animateDraw("start");}
+ else{showTrack();go("challenge");}
 }
-
 function deleteRecord(id){
- history=history.filter(r=>r.id!==id);
- save();
- renderHistory();
- renderHome();
+ history=history.filter(r=>r.id!==id);save();renderHistory();renderHome();
 }
 function clearHistory(){
  if(!confirm("記録と統計をすべて削除しますか？"))return;
  history=[];
  stats={attempts:0,passes:0,best:0,appearances:{},totalDraws:0,byClass:{}};
+ secretUnlocked=false;
+ unlockCount=0;
+ selected=5;
+ activeRecord=null;
+ chosen=[];
+ track=0;
+ trackResults=[];
+ life=0;
+ lifeMax=0;
  save();
  renderHistory();
  renderHome();
+ renderClass();
+ alert("記録を削除しました。∞クラスは再びロックされました。");
 }
 
-// クラス画面の左右スワイプ
 let touchStartX=0;
 const classCard=document.getElementById("classCard");
 classCard.addEventListener("touchstart",e=>{
