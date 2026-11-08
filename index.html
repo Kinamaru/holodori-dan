@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,221 +5,387 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>きなまる式 ホロドリ非公式クラス認定</title>
 <style>
+:root{--blue:#3678e8;--pale:#edf4ff;--ink:#17243b;--muted:#71809a}
 *{box-sizing:border-box}
-body{margin:0;background:#f3f6fb;color:#263449;font-family:system-ui,sans-serif}
-header{background:#fff;padding:22px 16px;text-align:center;border-bottom:1px solid #dce4ef}
-h1{font-size:20px;margin:0;color:#2463a6}
-header p{font-size:11px;color:#8190a3;margin:7px 0 0}
-main{max-width:560px;margin:auto;padding:18px 14px 90px}
-.panel{background:white;border-radius:16px;padding:18px;margin-bottom:15px;box-shadow:0 3px 14px #183b6010}
-h2{font-size:17px;margin:0 0 14px}
-button{border:0;border-radius:11px;padding:13px 16px;font-size:15px;font-weight:bold;background:#2875c7;color:white}
-button:disabled{opacity:.4}
-button.sub{background:#eaf1fa;color:#285b91}
-button.danger{background:#bd4050}
-button:active{transform:scale(.98)}
-.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.level{background:#edf4fc;color:#245e9b;padding:18px 5px;font-size:22px}
-.level.selected{background:#286db5;color:white}
-.small{font-size:12px;color:#718096}
-.life{font-size:32px;font-weight:800;text-align:center;letter-spacing:5px}
-.song{font-size:20px;font-weight:bold;text-align:center;padding:20px 5px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:10px 0}
-.row button{min-width:45px}
-.count{font-size:19px;font-weight:bold;min-width:25px;text-align:center}
-.hidden{display:none!important}
-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #dce4ef;display:flex;justify-content:center;gap:10px;padding:10px;z-index:3}
-nav button{flex:1;max-width:180px}
-.stat{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #edf0f5}
+body{margin:0;background:#f4f7fc;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif}
+button{border:0;border-radius:14px;padding:14px 18px;font-size:15px;font-weight:700;cursor:pointer}
+.primary{background:var(--blue);color:white}
+.secondary{background:#e8effb;color:#2859a8}
+.dark{background:#20243a;color:white}
+button:disabled{opacity:.35}
+header{padding:20px 18px 12px;text-align:center}
+.logo{font-size:12px;letter-spacing:3px;color:var(--blue);font-weight:900}
+h1{font-size:21px;margin:7px 0}
+.sub{font-size:11px;color:var(--muted);letter-spacing:1px}
+main{max-width:520px;margin:auto;padding:12px 16px 100px}
+.screen{display:none;animation:fade .3s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel{background:white;border-radius:22px;padding:20px;margin:12px 0;box-shadow:0 5px 22px #203b6410}
+.section-title{font-size:13px;color:var(--muted);font-weight:800;letter-spacing:1px;margin:8px 2px}
+.big{font-size:28px;font-weight:900}
+.muted{color:var(--muted);font-size:13px}
+.home-hero{background:linear-gradient(140deg,#397ce9,#73a8ff);color:white;padding:30px 22px;border-radius:25px;margin:12px 0}
+.home-hero .logo{color:#e6efff}
+.home-hero h2{font-size:25px;line-height:1.4;margin:12px 0}
+.home-hero p{font-size:12px;opacity:.9}
+.full{width:100%;margin:5px 0}
+.tabs{position:fixed;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(12px);display:flex;justify-content:center;border-top:1px solid #e7ebf2;padding:9px 4px calc(9px + env(safe-area-inset-bottom));z-index:10}
+.tabs button{background:none;color:#8490a3;font-size:11px;padding:8px 18px}
+.tabs button.active{color:var(--blue)}
+.class-card{border-radius:25px;padding:28px 18px;text-align:center;background:linear-gradient(145deg,#eaf2ff,#fff);border:1px solid #dbe7fb;min-height:270px}
+.class-card.secret{background:linear-gradient(145deg,#111020,#302044);color:white;border-color:#65418d}
+.class-symbol{font-size:65px;font-weight:900;line-height:1.2}
+.class-name{font-size:14px;letter-spacing:3px;font-weight:900}
+.class-life{font-size:30px;font-weight:900;margin:12px}
+.arrows{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0}
+.arrows button{width:58px;height:50px;font-size:22px}
+.rules{font-size:12px;line-height:1.9;color:var(--muted)}
+.challenge-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:900;color:var(--blue)}
+.life-number{font-size:30px;font-weight:900}
+.gauge{display:flex;gap:4px;margin:10px 0 18px}
+.gauge span{height:11px;flex:1;background:#38bb83;border-radius:5px}
+.gauge.yellow span.on{background:#f0bb36}
+.gauge.red span.on{background:#e65b64}
+.song-card{padding:28px 17px;border-radius:22px;text-align:center;background:linear-gradient(145deg,#252c48,#414c70);color:white;margin:15px 0}
+.song-card.secret{background:linear-gradient(145deg,#171020,#49275e)}
+.track{font-size:11px;letter-spacing:3px;opacity:.7}
+.song-title{font-size:23px;font-weight:900;margin:22px 0;line-height:1.5}
+.level{font-size:52px;font-weight:900}
+.level small{font-size:15px}
+.input-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.input-grid label{text-align:center;font-size:11px;color:var(--muted);font-weight:800}
+.input-grid input{width:100%;margin-top:7px;padding:13px 2px;border:1px solid #dce4f0;border-radius:12px;text-align:center;font-size:18px;font-weight:800;background:#f8faff;color:var(--ink)}
+.result-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #edf0f5;font-size:13px}
+.pass{color:#21a879}.fail{color:#e24c5c}
+.record{padding:14px 0;border-bottom:1px solid #edf0f5}
+.record strong{font-size:14px}
+.record small{display:block;color:var(--muted);margin-top:5px}
+.badge{display:inline-block;padding:5px 10px;border-radius:20px;background:#eaf1ff;color:#3269c5;font-size:11px;font-weight:900}
+.secret-text{color:#c59cff}
+.loading{position:fixed;inset:0;background:#f4f7fc;z-index:30;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.loading .logo{font-size:15px}
+.loadbar{width:180px;height:5px;background:#dce6f6;border-radius:9px;margin-top:20px;overflow:hidden}
+.loadbar div{height:100%;width:0;background:var(--blue);animation:load 1s linear forwards}
+@keyframes load{to{width:100%}}
+.toast{text-align:center;color:var(--muted);font-size:12px;margin:10px}
 </style>
 </head>
 <body>
+<div class="loading" id="loading">
+  <div class="logo">HOLODORI / CREATIVE CLASS</div>
+  <h1>NOW LOADING...</h1>
+  <div class="loadbar"><div></div></div>
+</div>
+
 <header>
-<h1>きなまる式 ホロドリ非公式クラス認定</h1>
-<p>HOLODORI / CREATIVE CLASS</p>
+  <div class="logo">HOLODORI / CREATIVE CLASS</div>
+  <h1>きなまる式 ホロドリ非公式クラス認定</h1>
+  <div class="sub">UNOFFICIAL CLASS CERTIFICATION</div>
 </header>
+
 <main>
-<section id="home">
-<div class="panel">
-<h2>クラス認定へようこそ！</h2>
-<p class="small">楽曲に挑戦して、自分のクラスを認定しよう。</p>
-<button style="width:100%" onclick="show('classes')">クラス認定へ</button>
-</div>
-<div class="panel">
-<h2>認定記録</h2>
-<div class="stat"><span>挑戦回数</span><b id="total">0</b></div>
-<div class="stat"><span>合格回数</span><b id="passed">0</b></div>
-<div class="stat"><span>合格率</span><b id="rate">0%</b></div>
-</div>
+<section id="home" class="screen active">
+  <div class="home-hero">
+    <div class="logo">HOLODORI CLASS SYSTEM</div>
+    <h2>自分の限界に<br>挑戦しよう。</h2>
+    <p>3 TRACKS · LIFE CHALLENGE</p>
+    <button class="full" style="background:white;color:#326ed0" onclick="go('classes')">クラス認定へ進む　›</button>
+  </div>
+  <div class="section-title">YOUR RECORD</div>
+  <div class="panel">
+    <div class="result-row"><span>挑戦回数</span><strong id="homeAttempts">0</strong></div>
+    <div class="result-row"><span>合格回数</span><strong id="homePasses">0</strong></div>
+    <div class="result-row"><span>合格率</span><strong id="homeRate">—</strong></div>
+  </div>
+  <div class="section-title">LATEST RECORD</div>
+  <div class="panel" id="latest">まだ記録がありません。</div>
 </section>
 
-<section id="classes" class="hidden">
-<div class="panel">
-<h2>クラス認定</h2>
-<p class="small">挑戦するクラスを選択してください。</p>
-<div class="levels">
-<button class="level" onclick="choose('Ⅰ')">Ⅰ</button>
-<button class="level" onclick="choose('Ⅱ')">Ⅱ</button>
-<button class="level" onclick="choose('Ⅲ')">Ⅲ</button>
-<button class="level" onclick="choose('Ⅳ')">Ⅳ</button>
-<button class="level" onclick="choose('Ⅴ')">Ⅴ</button>
-<button class="level" onclick="choose('Ⅹ')">Ⅹ</button>
-</div>
-<p class="small" id="classInfo">クラスを選択してください。</p>
-<div id="secret" class="hidden">
-<button style="width:100%;background:#302044" onclick="choose('∞')">∞ SECRET CLASS</button>
-</div>
-</div>
+<section id="classes" class="screen">
+  <div class="section-title">CLASS CERTIFICATION</div>
+  <div class="class-card" id="classCard">
+    <div class="class-name" id="className">CLASS Ⅹ</div>
+    <div class="class-symbol" id="classSymbol">Ⅹ</div>
+    <div class="class-life" id="classLife">LIFE 25</div>
+    <div class="muted" id="classDesc">3 TRACKS CHALLENGE</div>
+  </div>
+  <div class="arrows">
+    <button class="secondary" onclick="moveClass(-1)">‹</button>
+    <span class="muted" id="classIndex">7 CLASSES</span>
+    <button class="secondary" onclick="moveClass(1)">›</button>
+  </div>
+  <div class="panel">
+    <div class="section-title">RULE</div>
+    <div class="rules">
+      GREAT：−1　 GOOD：−2<br>
+      BAD：−3　 MISS：−5<br>
+      3曲終了時に LIFE が1以上で合格
+    </div>
+  </div>
+  <button class="primary full" onclick="confirmClass()">このクラスに挑戦する</button>
+  <button class="secondary full" onclick="go('home')">戻る</button>
+  <div class="toast" id="classToast"></div>
 </section>
 
-<section id="confirm" class="hidden">
-<div class="panel">
-<h2>挑戦クラス確認</h2>
-<div class="life" id="confirmClass"></div>
-<p class="small" id="confirmInfo"></p>
-<button style="width:100%" onclick="start()">抽選開始！</button>
-<button class="sub" style="width:100%;margin-top:9px" onclick="show('classes')">戻る</button>
-</div>
+<section id="confirm" class="screen">
+  <div class="panel" style="text-align:center;padding:35px 20px">
+    <div class="section-title">CLASS CONFIRMATION</div>
+    <div class="big" id="confirmName">CLASS Ⅹ</div>
+    <p class="muted" id="confirmLife">LIFE 25</p>
+    <button class="primary full" onclick="drawSongs()">抽選開始！</button>
+    <button class="secondary full" onclick="go('classes')">戻る</button>
+  </div>
 </section>
 
-<section id="challenge" class="hidden">
-<div class="panel">
-<h2 id="progress">1曲目 / 3曲</h2>
-<div class="life" id="lifeDisplay">LIFE 25</div>
-<div class="song" id="songName"></div>
-<p class="small" style="text-align:center">結果を入力してください</p>
-<div id="inputs"></div>
-<button style="width:100%;margin-top:15px" onclick="confirmResult()">入力完了</button>
-</div>
+<section id="draw" class="screen">
+  <div class="panel" style="text-align:center;padding:40px 18px">
+    <div class="logo">RANDOM SELECT</div>
+    <div class="big" id="drawText" style="margin:30px 0">抽選中...</div>
+    <p class="muted">CHALLENGE 3 TRACKS</p>
+  </div>
+  <button class="primary full" id="drawNext" style="display:none" onclick="startChallenge()">挑戦する</button>
 </section>
 
-<section id="result" class="hidden">
-<div class="panel">
-<h2 id="resultTitle">認定結果</h2>
-<div class="life" id="finalLife"></div>
-<div id="resultSongs"></div>
-<button style="width:100%;margin-top:15px" onclick="show('classes')">クラス認定へ戻る</button>
-</div>
+<section id="challenge" class="screen">
+  <div class="panel">
+    <div class="challenge-top"><span id="challengeClass">CLASS Ⅹ</span><span id="trackNumber">1ST TRACK</span></div>
+    <div class="section-title">LIFE</div>
+    <div class="life-number"><span id="lifeNow">25</span><small class="muted"> / <span id="lifeMax">25</span></small></div>
+    <div class="gauge" id="gauge"></div>
+    <div class="song-card" id="songCard">
+      <div class="track">NOW PLAYING</div>
+      <div class="song-title" id="songTitle">SONG TITLE</div>
+      <div class="level">Lv.<span id="songLevel">28</span></div>
+    </div>
+    <div class="section-title">RESULT INPUT</div>
+    <div class="input-grid">
+      <label>GREAT<input id="great" type="number" min="0" value="0"></label>
+      <label>GOOD<input id="good" type="number" min="0" value="0"></label>
+      <label>BAD<input id="bad" type="number" min="0" value="0"></label>
+      <label>MISS<input id="miss" type="number" min="0" value="0"></label>
+    </div>
+    <p class="muted" style="text-align:center">入力した数値は「確定」後にLIFEへ反映されます。</p>
+    <button class="primary full" onclick="submitTrack()">結果を確定する</button>
+  </div>
 </section>
 
-<section id="records" class="hidden">
-<div class="panel">
-<h2>結果・記録</h2>
-<div id="recordList" class="small">まだ記録はありません。</div>
-</div>
+<section id="result" class="screen">
+  <div class="panel" style="text-align:center">
+    <div class="section-title">CERTIFICATION RESULT</div>
+    <div class="big" id="resultStatus">合格</div>
+    <div class="life-number" id="resultLife">LIFE 10</div>
+    <p class="muted" id="resultClass">CLASS Ⅹ</p>
+  </div>
+  <div class="panel">
+    <div class="section-title">TRACK RESULTS</div>
+    <div id="resultTracks"></div>
+  </div>
+  <button class="primary full" onclick="retryChallenge()">同じ3曲でもう一度</button>
+  <button class="secondary full" onclick="go('classes')">クラス選択へ</button>
+  <button class="secondary full" onclick="go('history')">記録を見る</button>
+</section>
+
+<section id="history" class="screen">
+  <div class="section-title">RECORD & HISTORY</div>
+  <div class="panel">
+    <div class="result-row"><span>挑戦回数</span><strong id="statAttempts">0</strong></div>
+    <div class="result-row"><span>合格回数</span><strong id="statPasses">0</strong></div>
+    <div class="result-row"><span>合格率</span><strong id="statRate">—</strong></div>
+    <div class="result-row"><span>最高残りLIFE</span><strong id="statBest">—</strong></div>
+  </div>
+  <div class="section-title">HISTORY（最新10件）</div>
+  <div class="panel" id="historyList">記録はありません。</div>
+  <button class="secondary full" onclick="clearHistory()">記録をすべて削除</button>
 </section>
 </main>
-<nav>
-<button class="sub" onclick="show('home')">ホーム</button>
-<button class="sub" onclick="show('classes')">クラス認定</button>
-<button class="sub" onclick="show('records')">結果・記録</button>
+
+<nav class="tabs">
+  <button id="tab-home" class="active" onclick="go('home')">⌂<br>ホーム</button>
+  <button id="tab-classes" onclick="go('classes')">◆<br>クラス認定</button>
+  <button id="tab-history" onclick="go('history')">▤<br>結果・記録</button>
 </nav>
+
 <script>
-const pools={
-"Ⅹ":{
-life:25,
-songs:[
-"星屑カプセル","Play Dice !","爆ラブ+ケミストリー",
-"ホットダック！","メギツネ","Lifetime Showtime","GHOST",
-"ころねの最凶天災☆わんだふぁー♡わーるど",
-"マーシャル・マキシマイザー","Carbonated Love","なかま歌",
-"Slap by Step","地獄でおあうぜ！スパちょこるなたん",
-"シミュラクル","青く在れ","ばーちゃらぶ","怪宴スペクタクル",
-"ぽ","チェリーポップ","CORE//UNBREAKABLE",
-"Miracle Palette","ω猫","Grave of Halo","リーサルドーズ・パラノイド",
-"幽霊船戦","夢色ワンダー","ヒャダインのじょーじょーゆーじょー",
-"PSYCHO","Monsters and Men","FIRE BIRD","KINGWORLD","六兆年と一夜物語"
-]},
-"∞":{
-life:10,
-songs:[
-"Grave of Halo","リーサルドーズ・パラノイド","幽霊船戦",
-"夢色ワンダー","ヒャダインのじょーじょーゆーじょー",
-"PSYCHO","Monsters and Men","FIRE BIRD","KINGWORLD","六兆年と一夜物語"
-]}
+const deductions={great:1,good:2,bad:3,miss:5};
+
+const classes=[
+ {name:"Ⅰ",life:8,levels:[16,16,17],ready:false},
+ {name:"Ⅱ",life:10,levels:[17,18,18],ready:false},
+ {name:"Ⅲ",life:12,levels:[18,18,19],ready:false},
+ {name:"Ⅳ",life:15,levels:[19,19,20],ready:false},
+ {name:"Ⅴ",life:18,levels:[20,20,21],ready:false},
+ {name:"Ⅹ",life:25,levels:[28,[28,29],29],ready:true},
+ {name:"∞",life:10,levels:[[29,30],[29,30],30],ready:true,secret:true}
+];
+
+const songs={
+28:["星屑カプセル","Play Dice !","爆ラブ+ケミストリー","ホットダック！","メギツネ","Lifetime Showtime","GHOST","ころねの最凶天災☆わんだふぁー♡わーるど","マーシャル・マキシマイザー","Carbonated Love","なかま歌","Slap by Step","地獄でおあうぜ！スパちょこるなたん","シミュラクル","青く在れ","ばーちゃらぶ","怪宴スペクタクル","ぽ","チェリーポップ","CORE//UNBREAKABLE","Miracle Palette","ω猫"],
+29:["Grave of Halo","リーサルドーズ・パラノイド","幽霊船戦","夢色ワンダー","ヒャダインのじょーじょーゆーじょー","PSYCHO","Monsters and Men","FIRE BIRD"],
+30:["KINGWORLD","六兆年と一夜物語"]
 };
-let cls="Ⅹ",life=25,index=0,draw=[],counts={},history=[];
-const deductions={GREAT:1,GOOD:2,BAD:3,MISS:5};
-function show(id){
-document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
-document.getElementById(id).classList.remove("hidden");
-if(id==="home")updateStats();
-if(id==="records")renderRecords();
+
+let selected=5,secretUnlocked=false,chosen=[],track=0,life=0,lifeMax=0,trackResults=[],currentRecord=null;
+let history=JSON.parse(localStorage.getItem("holoHistory")||"[]");
+let stats=JSON.parse(localStorage.getItem("holoStats")||'{"attempts":0,"passes":0,"best":0}');
+
+function save(){
+ localStorage.setItem("holoHistory",JSON.stringify(history));
+ localStorage.setItem("holoStats",JSON.stringify(stats));
 }
-function choose(c){
-if(!pools[c]){
-document.getElementById("classInfo").textContent="このクラスの楽曲リストは準備中です。";
-return;
+function go(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+ if(["home","classes","history"].includes(id))document.getElementById("tab-"+id).classList.add("active");
+ if(id==="home")renderHome();
+ if(id==="history")renderHistory();
 }
-cls=c;
-document.getElementById("confirmClass").textContent=c;
-document.getElementById("confirmInfo").textContent="初期LIFE："+pools[c].life+" / 3曲挑戦";
-show("confirm");
+function moveClass(dir){
+ if(selected===5 && dir===1){
+  window.unlockCount=(window.unlockCount||0)+1;
+  if(window.unlockCount>=5){
+   secretUnlocked=true;selected=6;window.unlockCount=0;
+   document.getElementById("classToast").textContent="SECRET CLASS UNLOCKED";
+   renderClass();return;
+  }
+ }else if(selected===6 && dir===-1){selected=5;}
+ else{
+  window.unlockCount=0;
+  selected=Math.max(0,Math.min(5,selected+dir));
+ }
+ renderClass();
 }
-function start(){
-life=pools[cls].life;index=0;draw=[];counts={};
-for(let i=0;i<3;i++){
-const a=pools[cls].songs;
-draw.push(a[Math.floor(Math.random()*a.length)]);
+function renderClass(){
+ const c=classes[selected],card=document.getElementById("classCard");
+ card.classList.toggle("secret",!!c.secret);
+ document.getElementById("className").textContent="CLASS "+c.name;
+ document.getElementById("classSymbol").textContent=c.name;
+ document.getElementById("classLife").textContent="LIFE "+c.life;
+ document.getElementById("classDesc").textContent=c.secret?"SECRET CLASS":"3 TRACKS CHALLENGE";
+ document.getElementById("classIndex").textContent=(selected+1)+" / 7";
 }
-show("challenge");renderSong();
+function confirmClass(){
+ const c=classes[selected];
+ if(!c.ready){alert("このクラスの曲リストは準備中です！");return;}
+ document.getElementById("confirmName").textContent="CLASS "+c.name;
+ document.getElementById("confirmLife").textContent="LIFE "+c.life;
+ go("confirm");
 }
-function renderSong(){
-document.getElementById("progress").textContent=(index+1)+"曲目 / 3曲";
-document.getElementById("lifeDisplay").textContent="LIFE "+life;
-document.getElementById("songName").textContent=draw[index];
-counts={GREAT:0,GOOD:0,BAD:0,MISS:0};
-document.getElementById("inputs").innerHTML=Object.keys(counts).map(k=>
-`<div class="row"><b>${k}（-${deductions[k]}）</b>
-<button class="sub" onclick="change('${k}',-1)">−</button>
-<span class="count" id="v${k}">0</span>
-<button class="sub" onclick="change('${k}',1)">＋</button></div>`
-).join("");
+function drawSongs(){
+ const c=classes[selected];
+ chosen=c.levels.map(level=>{
+  const possible=Array.isArray(level)?level:[level];
+  const lv=possible[Math.floor(Math.random()*possible.length)];
+  const pool=songs[lv];
+  return {title:pool[Math.floor(Math.random()*pool.length)],level:lv};
+ });
+ go("draw");
+ const txt=document.getElementById("drawText");
+ const btn=document.getElementById("drawNext");
+ btn.style.display="none";
+ let n=0;
+ const timer=setInterval(()=>{
+  txt.textContent=["抽選中...","SELECTING...","READY?","抽選完了！"][Math.min(n,3)];
+  n++;
+  if(n>3){clearInterval(timer);btn.style.display="block";}
+ },450);
 }
-function change(k,d){
-counts[k]=Math.max(0,counts[k]+d);
-document.getElementById("v"+k).textContent=counts[k];
+function startChallenge(){
+ const c=classes[selected];
+ life=c.life;lifeMax=c.life;track=0;trackResults=[];
+ stats.attempts++;save();
+ showTrack();
+ go("challenge");
 }
-function confirmResult(){
-let loss=0;
-for(const k in counts)loss+=counts[k]*deductions[k];
-life=Math.max(0,life-loss);
-history.push({class:cls,song:draw[index],counts:{...counts},life});
-if(index<2){index++;renderSong();}
-else finish();
+function showTrack(){
+ const c=classes[selected],song=chosen[track];
+ document.getElementById("challengeClass").textContent="CLASS "+c.name;
+ document.getElementById("trackNumber").textContent=["1ST TRACK","2ND TRACK","3RD TRACK"][track];
+ document.getElementById("lifeNow").textContent=life;
+ document.getElementById("lifeMax").textContent=lifeMax;
+ document.getElementById("songTitle").textContent=song.title;
+ document.getElementById("songLevel").textContent=song.level;
+ document.getElementById("songCard").classList.toggle("secret",!!c.secret);
+ ["great","good","bad","miss"].forEach(id=>document.getElementById(id).value=0);
+ renderGauge();
 }
-function finish(){
-const ok=life>=1;
-document.getElementById("resultTitle").textContent=ok?"合格！":"不合格";
-document.getElementById("finalLife").textContent="LIFE "+life;
-document.getElementById("resultSongs").innerHTML=history.slice(-3).map((r,i)=>
-`<div class="stat"><span>${i+1}曲目：${r.song}</span><b>LIFE ${r.life}</b></div>`
-).join("");
-const records=JSON.parse(localStorage.getItem("holodoriRecords")||"[]");
-records.unshift({class:cls,ok,life,date:new Date().toLocaleString(),songs:history.slice(-3)});
-localStorage.setItem("holodoriRecords",JSON.stringify(records.slice(0,10)));
-show("result");
+function renderGauge(){
+ const gauge=document.getElementById("gauge");
+ gauge.innerHTML="";
+ let color=life<=lifeMax/3?"red":life<=lifeMax*2/3?"yellow":"";
+ gauge.className="gauge "+color;
+ for(let i=0;i<lifeMax;i++){
+  const s=document.createElement("span");
+  if(i>=life)s.classList.add("on");
+  else s.style.background="#dce4f0";
+  gauge.appendChild(s);
+ }
 }
-function renderRecords(){
-const r=JSON.parse(localStorage.getItem("holodoriRecords")||"[]");
-document.getElementById("recordList").innerHTML=r.length?r.map(x=>
-`<div class="stat"><span>${x.class} / ${x.date}</span><b>${x.ok?"合格":"不合格"}</b></div>`
-).join(""):"まだ記録はありません。";
+function submitTrack(){
+ const counts={};
+ for(const id of ["great","good","bad","miss"]){
+  counts[id]=Math.max(0,parseInt(document.getElementById(id).value)||0);
+ }
+ const lost=counts.great+counts.good*2+counts.bad*3+counts.miss*5;
+ life=Math.max(0,life-lost);
+ trackResults.push({song:chosen[track],counts,lost,life});
+ if(life===0 && track<2){
+  if(!confirm("LIFEが0になりました。不合格確定です。残りの曲も続けますか？")){finishChallenge();return;}
+ }
+ track++;
+ if(track<3)showTrack();else finishChallenge();
 }
-function updateStats(){
-const r=JSON.parse(localStorage.getItem("holodoriRecords")||"[]");
-document.getElementById("total").textContent=r.length;
-document.getElementById("passed").textContent=r.filter(x=>x.ok).length;
-document.getElementById("rate").textContent=(r.length?Math.round(r.filter(x=>x.ok).length/r.length*100):0)+"%";
+function finishChallenge(){
+ const passed=life>=1;
+ if(passed)stats.passes++;
+ stats.best=Math.max(stats.best,life);
+ currentRecord={id:Date.now(),className:classes[selected].name,passed,life,lifeMax,tracks:trackResults.slice(),played:true,date:new Date().toLocaleString("ja-JP")};
+ history.unshift(currentRecord);history=history.slice(0,10);save();
+ document.getElementById("resultStatus").textContent=passed?"合格！":"不合格";
+ document.getElementById("resultStatus").className="big "+(passed?"pass":"fail");
+ document.getElementById("resultLife").textContent="LIFE "+life+" / "+lifeMax;
+ document.getElementById("resultClass").textContent="CLASS "+classes[selected].name;
+ document.getElementById("resultTracks").innerHTML=trackResults.map((r,i)=>`
+  <div class="record"><strong>${i+1}. ${escapeHTML(r.song.title)}　Lv.${r.song.level}</strong>
+  <small>GREAT ${r.counts.great} / GOOD ${r.counts.good} / BAD ${r.counts.bad} / MISS ${r.counts.miss}</small>
+  <small>減少 LIFE −${r.lost}　→　残り ${r.life}</small></div>`).join("");
+ go("result");
 }
-let taps=0;
-document.querySelectorAll(".level").forEach(b=>{
-if(b.textContent==="Ⅹ")b.addEventListener("click",()=>{
-taps++;
-if(taps>=5){document.getElementById("secret").classList.remove("hidden");taps=0;}
-});
-});
-show("home");
+function retryChallenge(){
+ startChallenge();
+}
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function renderHome(){
+ document.getElementById("homeAttempts").textContent=stats.attempts;
+ document.getElementById("homePasses").textContent=stats.passes;
+ document.getElementById("homeRate").textContent=stats.attempts?Math.round(stats.passes/stats.attempts*100)+"%":"—";
+ const r=history[0];
+ document.getElementById("latest").innerHTML=r?`<strong>CLASS ${r.className}　<span class="${r.passed?"pass":"fail"}">${r.passed?"合格":"不合格"}</span></strong><small class="muted">${r.date} · LIFE ${r.life}/${r.lifeMax}</small>`:"まだ記録がありません。";
+}
+function renderHistory(){
+ document.getElementById("statAttempts").textContent=stats.attempts;
+ document.getElementById("statPasses").textContent=stats.passes;
+ document.getElementById("statRate").textContent=stats.attempts?Math.round(stats.passes/stats.attempts*100)+"%":"—";
+ document.getElementById("statBest").textContent=stats.attempts?stats.best:"—";
+ const list=document.getElementById("historyList");
+ list.innerHTML=history.length?history.map(r=>`
+ <div class="record"><strong>CLASS ${r.className}　<span class="${r.passed?"pass":"fail"}">${r.passed?"合格":"不合格"}</span></strong>
+ <small>${r.date} · LIFE ${r.life}/${r.lifeMax}</small>
+ <small>${r.tracks.map(t=>escapeHTML(t.song.title)).join(" / ")}</small>
+ <button class="secondary" style="padding:7px 12px;margin-top:8px" onclick="deleteRecord(${r.id})">この記録を削除</button></div>`).join(""):"記録はありません。";
+}
+function deleteRecord(id){
+ history=history.filter(r=>r.id!==id);save();renderHistory();
+}
+function clearHistory(){
+ if(!confirm("記録と統計をすべて削除しますか？"))return;
+ history=[];stats={attempts:0,passes:0,best:0};save();renderHistory();renderHome();
+}
+renderClass();renderHome();
+setTimeout(()=>document.getElementById("loading").style.display="none",1000);
 </script>
 </body>
 </html>
