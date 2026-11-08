@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>きなまる式 ホロドリ非公式クラス認定</title>
+<title>きなまる式 ホロドリ非公式ランダムクラス認定</title>
 <style>
 :root{
  --blue:#397ce9;--bg:#f3f6fc;--ink:#19263e;--muted:#8490a5;
@@ -19,7 +19,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .full{width:100%;margin:5px 0}
 header{text-align:center;padding:18px 12px 10px}
 .logo{font-size:11px;letter-spacing:3px;font-weight:900;color:var(--blue)}
-header h1{font-size:19px;margin:7px 0}
+header h1{font-size:19px;line-height:1.5;margin:7px 0}
 .sub{font-size:10px;color:var(--muted);letter-spacing:1px}
 main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .screen{display:none}
@@ -42,6 +42,12 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .rail-item.secret{background:#2b1c3b;color:#c9a0ff}
 .class-card{border-radius:24px;padding:22px 15px;text-align:center;background:linear-gradient(145deg,#eaf2ff,#fff);border:1px solid #dce8fa;transition:background .3s}
 .class-card.secret{background:linear-gradient(145deg,#151020,#392348);color:white;border-color:#68418d}
+.class-card.secret.special-reveal{animation:secretReveal .9s ease}
+@keyframes secretReveal{
+ 0%{box-shadow:0 0 0 #9d59ff;transform:scale(1)}
+ 35%{box-shadow:0 0 35px #a45aff,0 0 70px #6c35a8;transform:scale(1.035)}
+ 100%{box-shadow:0 0 0 #9d59ff;transform:scale(1)}
+}
 .class-name{font-size:12px;letter-spacing:3px;font-weight:900}
 .class-symbol{font-size:62px;font-weight:900;line-height:1.25;margin:5px}
 .class-life{font-size:27px;font-weight:900;margin:6px}
@@ -90,11 +96,17 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .pass-emblem.red-silver,.pass-emblem.gold-silver{background:linear-gradient(145deg,#e4e7ed,#9ca6b5,#edf0f5,#8e9aab)}
 .pass-emblem.red-gold,.pass-emblem.gold-gold{background:linear-gradient(145deg,#fff0a8,#c18b25,#ffe18a,#a66d12)}
 .pass-emblem.gold-rainbow{background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed)}
+.pass-emblem.secret{background:linear-gradient(145deg,#151020,#392348,#21142f)!important;border-color:#9b6bc5;box-shadow:0 7px 25px #29133f55,inset 0 0 0 2px #ffffff35}
+.pass-emblem.secret:before{border-color:#c9a0ff}
+.pass-emblem.secret:after{border-color:#9b6bc5}
 .pass-emblem.red-silver .emblem-class,.pass-emblem.red-silver .emblem-label,.pass-emblem.red-gold .emblem-class,.pass-emblem.red-gold .emblem-label{color:#d52335;text-shadow:0 1px 2px #ffffff90}
 .pass-emblem.gold-silver .emblem-class,.pass-emblem.gold-silver .emblem-label,.pass-emblem.gold-gold .emblem-class,.pass-emblem.gold-gold .emblem-label,.pass-emblem.gold-rainbow .emblem-class,.pass-emblem.gold-rainbow .emblem-label{color:#ffe69a;text-shadow:0 2px 3px #81500a}
+.pass-emblem.secret .emblem-class,.pass-emblem.secret .emblem-label{color:#e3c6ff;text-shadow:0 2px 5px #a45aff}
+.emblem-type{position:relative;z-index:1;font-size:12px;font-weight:900;letter-spacing:2px;color:#ffffff;margin-bottom:3px}
 .emblem-class{position:relative;z-index:1;font-size:58px;font-weight:1000;line-height:1.1}
 .emblem-label{position:relative;z-index:1;margin-top:9px;font-size:27px;font-weight:1000;letter-spacing:5px}
 .emblem-caption{position:relative;z-index:1;font-size:9px;font-weight:900;letter-spacing:2px;color:#26334a;margin-top:5px}
+.pass-emblem.secret .emblem-caption{color:#c9a0ff}
 .result-status{font-size:34px;font-weight:1000}
 .result-status.fail{color:#397ce9}
 .record{padding:13px 0;border-bottom:1px solid #edf0f5}
@@ -117,11 +129,15 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .badge-small.gold-rainbow{background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed)}
 .badge-small.red-silver,.badge-small.red-gold{color:#d52335}
 .badge-small.gold-silver,.badge-small.gold-gold,.badge-small.gold-rainbow{color:#ffe69a}
+.badge-small.secret{background:linear-gradient(145deg,#151020,#392348);color:#e3c6ff;border-color:#9b6bc5}
 .loading{position:fixed;inset:0;background:var(--bg);z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .loadbar{width:180px;height:5px;background:#dce6f6;border-radius:9px;margin-top:20px;overflow:hidden}
 .loadbar div{height:100%;width:0;background:var(--blue);animation:load 1s linear forwards}
 @keyframes load{to{width:100%}}
 .share-note{text-align:center;font-size:11px;color:var(--muted);margin:5px 0 10px}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #edf0f5;font-size:13px}
+.stat-song{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #edf0f5;font-size:12px}
+.stat-song span:last-child{text-align:right;font-weight:900}
 </style>
 </head>
 <body>
@@ -132,9 +148,7 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 </div>
 
 <header>
- <div class="logo">HOLODORI / CREATIVE CLASS</div>
- <h1>きなまる式 ホロドリ非公式クラス認定</h1>
- <div class="sub">UNOFFICIAL CLASS CERTIFICATION</div>
+ <h1>きなまる式 ホロドリ非公式<br>ランダムクラス認定</h1>
 </header>
 
 <main>
@@ -542,7 +556,9 @@ function finishChallenge(){
 }
 function emblemHTML(className,rank){
  if(!rank)return "";
- return `<div class="pass-emblem ${rank}">
+ const secret=className==="∞";
+ return `<div class="pass-emblem ${rank}${secret?" secret":""}">
+  <div class="emblem-type">CLASS</div>
   <div class="emblem-class">${escapeHTML(className)}</div>
   <div class="emblem-label">合格</div>
   <div class="emblem-caption">HOLODORI CLASS</div>
@@ -551,7 +567,7 @@ function emblemHTML(className,rank){
 function smallBadgeHTML(record){
  if(!record.finished||!record.passed)return "";
  const rank=getBadgeRank(record);
- return `<span class="badge-small ${rank}">${escapeHTML(record.className)}</span>`;
+ return `<span class="badge-small ${rank}${record.className==="∞"?" secret":""}">${escapeHTML(record.className)}</span>`;
 }
 function showResult(r){
  const status=document.getElementById("resultStatus");
@@ -581,13 +597,15 @@ function makeShareImage(record){
  bg.addColorStop(0,"#edf4ff");bg.addColorStop(1,"#dce8fb");
  ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);
 
+ /* シンプルな日本語タイトル */
  ctx.textAlign="center";
- ctx.fillStyle="#397ce9";ctx.font="900 30px sans-serif";
- ctx.fillText("HOLODORI / CREATIVE CLASS",540,78);
- ctx.fillStyle="#19263e";ctx.font="900 43px sans-serif";
- ctx.fillText("CLASS CERTIFICATION",540,135);
+ ctx.fillStyle="#397ce9";
+ ctx.font="900 34px sans-serif";
+ ctx.fillText("きなまる式 ホロドリ非公式",540,75);
+ ctx.fillText("ランダムクラス認定",540,120);
 
  const rank=record.passed?getBadgeRank(record):"";
+ const secret=record.className==="∞";
  const colors={
   "red-silver":["#e4e7ed","#9ca6b5","#edf0f5"],
   "gold-silver":["#e4e7ed","#9ca6b5","#edf0f5"],
@@ -595,22 +613,32 @@ function makeShareImage(record){
   "gold-gold":["#fff0a8","#c18b25","#ffe18a"],
   "gold-rainbow":["#ff6475","#55d6a0","#579bff"]
  };
- const palette=colors[rank]||["#dfe7f3","#aebbd0","#e8eef8"];
+ const palette=secret
+  ?["#151020","#392348","#21142f"]
+  :(colors[rank]||["#dfe7f3","#aebbd0","#e8eef8"]);
  const grad=ctx.createLinearGradient(300,180,780,600);
  palette.forEach((c,i)=>grad.addColorStop(i/(palette.length-1),c));
 
  ctx.beginPath();ctx.roundRect(330,175,420,420,42);
  ctx.fillStyle=grad;ctx.fill();
- ctx.strokeStyle="#ffffff";ctx.lineWidth=10;ctx.stroke();
+ ctx.strokeStyle=secret?"#9b6bc5":"#ffffff";
+ ctx.lineWidth=10;ctx.stroke();
  ctx.beginPath();ctx.roundRect(352,197,376,376,30);
- ctx.strokeStyle="#ffffffb0";ctx.lineWidth=5;ctx.stroke();
+ ctx.strokeStyle=secret?"#c9a0ff":"#ffffffb0";
+ ctx.lineWidth=5;ctx.stroke();
 
- ctx.fillStyle=rank&&rank.startsWith("red")?"#d52335":"#fff0a8";
+ ctx.fillStyle=secret?"#e3c6ff":rank&&rank.startsWith("red")?"#d52335":"#fff0a8";
+ ctx.shadowColor=secret?"#a45aff":"#60431d";
+ ctx.shadowBlur=secret?12:8;
+
+ /* 称号の上にCLASS */
+ ctx.font="900 34px sans-serif";
+ ctx.fillText("CLASS",540,270);
+
  ctx.font="1000 155px sans-serif";
- ctx.shadowColor="#60431d";ctx.shadowBlur=8;
- ctx.fillText(record.className,540,390);
+ ctx.fillText(record.className,540,405);
  ctx.font="1000 75px sans-serif";
- ctx.fillText(record.passed?"合格":"不合格",540,490);
+ ctx.fillText(record.passed?"合格":"不合格",540,500);
  ctx.shadowBlur=0;
 
  ctx.fillStyle="#19263e";ctx.font="900 42px sans-serif";
@@ -645,9 +673,10 @@ function makeShareImage(record){
   ctx.fillText(t.ap?"ALL PERFECT":t.fc?"FULL COMBO":"CLEAR",115,y+68);
  });
 
+ /* ハッシュタグは画像には入れない */
  ctx.textAlign="center";
  ctx.fillStyle="#8490a5";ctx.font="bold 21px sans-serif";
- ctx.fillText("きなまる式 ホロドリ非公式クラス認定",540,1290);
+ ctx.fillText("きなまる式 ホロドリ非公式ランダムクラス認定",540,1290);
  return canvas.toDataURL("image/png");
 }
 
@@ -664,7 +693,6 @@ function shareResult(){
   button.disabled=true;
   button.textContent="画像を作成中...";
 
-  // 画像生成は同期処理なので、共有ボタンの操作権限を維持する
   const dataURL=makeShareImage(activeRecord);
   const base64=dataURL.split(",")[1];
   const binary=atob(base64);
@@ -683,11 +711,11 @@ function shareResult(){
   if(navigator.share){
    const shareData={
     files:[file],
-    title:"ホロドリ クラス認定結果"
+    title:"きなまる式 ホロドリ非公式ランダムクラス認定",
+    text:"#きなまる式ホロドリ非公式ランダムクラス認定"
    };
 
    if(!navigator.canShare||navigator.canShare(shareData)){
-    // awaitを挟まず、クリック直後に共有処理を開始
     const sharing=navigator.share(shareData);
     sharing.catch(error=>{
      if(error.name!=="AbortError"){
@@ -838,7 +866,7 @@ function clearHistory(){
  stats={attempts:0,passes:0,best:0,appearances:{},totalDraws:0,byClass:{}};
  secretUnlocked=false;
  unlockCount=0;
- selected=5;
+ selected=0;
  activeRecord=null;
  chosen=[];
  track=0;
