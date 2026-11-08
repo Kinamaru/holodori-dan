@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>きなまる式 ホロドリ非公式ランダムクラス認定</title>
+<title>きなまる式ホロドリ非公式ランダムクラス認定</title>
 <style>
 :root{
  --blue:#397ce9;--bg:#f3f6fc;--ink:#19263e;--muted:#8490a5;
@@ -19,7 +19,8 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .full{width:100%;margin:5px 0}
 header{text-align:center;padding:18px 12px 10px}
 .logo{font-size:11px;letter-spacing:3px;font-weight:900;color:var(--blue)}
-header h1{font-size:19px;line-height:1.5;margin:7px 0}
+header h1{font-size:19px;line-height:1.55;margin:7px 0;font-weight:900}
+header h1 span{display:block}
 .sub{font-size:10px;color:var(--muted);letter-spacing:1px}
 main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .screen{display:none}
@@ -29,6 +30,9 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .section-title{font-size:11px;color:var(--muted);font-weight:900;letter-spacing:1.5px;margin:5px 2px 12px}
 .muted{font-size:12px;color:var(--muted)}
 .big{font-size:27px;font-weight:900}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:10px 2px;border-bottom:1px solid #edf0f5;font-size:13px}
+.detail-row strong{font-weight:900}
+.stat-song{display:flex;justify-content:space-between;align-items:center;padding:12px 3px;border-bottom:1px solid #edf0f5;font-size:12px;gap:10px}
 .home-hero{background:linear-gradient(140deg,#3679e7,#82b1ff);color:white;border-radius:24px;padding:27px 20px;margin:10px 0}
 .home-hero .logo{color:#e5efff}
 .home-hero h2{font-size:25px;line-height:1.4}
@@ -42,11 +46,11 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .rail-item.secret{background:#2b1c3b;color:#c9a0ff}
 .class-card{border-radius:24px;padding:22px 15px;text-align:center;background:linear-gradient(145deg,#eaf2ff,#fff);border:1px solid #dce8fa;transition:background .3s}
 .class-card.secret{background:linear-gradient(145deg,#151020,#392348);color:white;border-color:#68418d}
-.class-card.secret.special-reveal{animation:secretReveal .9s ease}
+.class-card.special-reveal{animation:secretReveal .9s ease}
 @keyframes secretReveal{
- 0%{box-shadow:0 0 0 #9d59ff;transform:scale(1)}
- 35%{box-shadow:0 0 35px #a45aff,0 0 70px #6c35a8;transform:scale(1.035)}
- 100%{box-shadow:0 0 0 #9d59ff;transform:scale(1)}
+ 0%{box-shadow:0 0 0 #a65cff00;transform:scale(1)}
+ 40%{box-shadow:0 0 35px #a65cffcc;transform:scale(1.025)}
+ 100%{box-shadow:0 0 0 #a65cff00;transform:scale(1)}
 }
 .class-name{font-size:12px;letter-spacing:3px;font-weight:900}
 .class-symbol{font-size:62px;font-weight:900;line-height:1.25;margin:5px}
@@ -96,17 +100,50 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .pass-emblem.red-silver,.pass-emblem.gold-silver{background:linear-gradient(145deg,#e4e7ed,#9ca6b5,#edf0f5,#8e9aab)}
 .pass-emblem.red-gold,.pass-emblem.gold-gold{background:linear-gradient(145deg,#fff0a8,#c18b25,#ffe18a,#a66d12)}
 .pass-emblem.gold-rainbow{background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed)}
-.pass-emblem.secret{background:linear-gradient(145deg,#151020,#392348,#21142f)!important;border-color:#9b6bc5;box-shadow:0 7px 25px #29133f55,inset 0 0 0 2px #ffffff35}
-.pass-emblem.secret:before{border-color:#c9a0ff}
-.pass-emblem.secret:after{border-color:#9b6bc5}
 .pass-emblem.red-silver .emblem-class,.pass-emblem.red-silver .emblem-label,.pass-emblem.red-gold .emblem-class,.pass-emblem.red-gold .emblem-label{color:#d52335;text-shadow:0 1px 2px #ffffff90}
 .pass-emblem.gold-silver .emblem-class,.pass-emblem.gold-silver .emblem-label,.pass-emblem.gold-gold .emblem-class,.pass-emblem.gold-gold .emblem-label,.pass-emblem.gold-rainbow .emblem-class,.pass-emblem.gold-rainbow .emblem-label{color:#ffe69a;text-shadow:0 2px 3px #81500a}
-.pass-emblem.secret .emblem-class,.pass-emblem.secret .emblem-label{color:#e3c6ff;text-shadow:0 2px 5px #a45aff}
-.emblem-type{position:relative;z-index:1;font-size:12px;font-weight:900;letter-spacing:2px;color:#ffffff;margin-bottom:3px}
+
+/* ∞専用：黒・紫の特別デザイン */
+.pass-emblem.infinity.red-silver{
+ background:linear-gradient(145deg,#100d1c,#30213f,#171020);
+ border:5px solid #aeb8c8;
+ box-shadow:0 0 18px #9b78c655,inset 0 0 18px #ffffff18;
+}
+.pass-emblem.infinity.red-silver:before{border-color:#d2d9e5}
+.pass-emblem.infinity.red-silver:after{border-color:#8b789f}
+.pass-emblem.infinity.red-gold{
+ background:linear-gradient(145deg,#100d1c,#30213f,#171020);
+ border:5px solid #d6a33d;
+ box-shadow:0 0 20px #d6a33d66,inset 0 0 18px #ffffff18;
+}
+.pass-emblem.infinity.red-gold:before{border-color:#ffe0a0}
+.pass-emblem.infinity.red-gold:after{border-color:#a87932}
+.pass-emblem.infinity.gold-rainbow{
+ background:linear-gradient(145deg,#100b1c,#38204e,#171020);
+ border:5px solid #bd83ff;
+ box-shadow:0 0 28px #a65cff99,inset 0 0 25px #d5a3ff30;
+}
+.pass-emblem.infinity.gold-rainbow:before{border-color:#ffe6a6}
+.pass-emblem.infinity.gold-rainbow:after{border-color:#bd83ff}
+
+/* 文字色は赤か金に統一 */
+.pass-emblem.infinity.red-silver .emblem-class,
+.pass-emblem.infinity.red-silver .emblem-label,
+.pass-emblem.infinity.red-gold .emblem-class,
+.pass-emblem.infinity.red-gold .emblem-label{
+ color:#ed303f;
+ text-shadow:0 0 10px #a82c55,0 2px 3px #000;
+}
+.pass-emblem.infinity.gold-rainbow .emblem-class,
+.pass-emblem.infinity.gold-rainbow .emblem-label{
+ color:#ffd75e;
+ text-shadow:0 0 10px #ffcf5c,0 0 20px #a65cff,0 2px 3px #000;
+}
+
 .emblem-class{position:relative;z-index:1;font-size:58px;font-weight:1000;line-height:1.1}
 .emblem-label{position:relative;z-index:1;margin-top:9px;font-size:27px;font-weight:1000;letter-spacing:5px}
-.emblem-caption{position:relative;z-index:1;font-size:9px;font-weight:900;letter-spacing:2px;color:#26334a;margin-top:5px}
-.pass-emblem.secret .emblem-caption{color:#c9a0ff}
+.emblem-caption{position:relative;z-index:1;font-size:9px;font-weight:900;letter-spacing:2px;color:#26334a;margin-bottom:5px}
+.pass-emblem.infinity .emblem-caption{color:#d8c8eb}
 .result-status{font-size:34px;font-weight:1000}
 .result-status.fail{color:#397ce9}
 .record{padding:13px 0;border-bottom:1px solid #edf0f5}
@@ -129,15 +166,11 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .badge-small.gold-rainbow{background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed)}
 .badge-small.red-silver,.badge-small.red-gold{color:#d52335}
 .badge-small.gold-silver,.badge-small.gold-gold,.badge-small.gold-rainbow{color:#ffe69a}
-.badge-small.secret{background:linear-gradient(145deg,#151020,#392348);color:#e3c6ff;border-color:#9b6bc5}
 .loading{position:fixed;inset:0;background:var(--bg);z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .loadbar{width:180px;height:5px;background:#dce6f6;border-radius:9px;margin-top:20px;overflow:hidden}
 .loadbar div{height:100%;width:0;background:var(--blue);animation:load 1s linear forwards}
 @keyframes load{to{width:100%}}
 .share-note{text-align:center;font-size:11px;color:var(--muted);margin:5px 0 10px}
-.detail-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #edf0f5;font-size:13px}
-.stat-song{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #edf0f5;font-size:12px}
-.stat-song span:last-child{text-align:right;font-weight:900}
 </style>
 </head>
 <body>
@@ -148,7 +181,11 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 </div>
 
 <header>
- <h1>きなまる式 ホロドリ非公式<br>ランダムクラス認定</h1>
+ <div class="logo">HOLODORI / CREATIVE CLASS</div>
+ <h1>
+  <span>きなまる式ホロドリ</span>
+  <span>非公式ランダムクラス認定</span>
+ </h1>
 </header>
 
 <main>
@@ -392,7 +429,7 @@ function renderClass(){
  const c=classes[selected];
  const card=document.getElementById("classCard");
  card.classList.toggle("secret",!!c.secret);
- document.getElementById("className").textContent="CLASS "+c.name;
+ document.getElementById("className").textContent="CLASS";
  document.getElementById("classSymbol").textContent=c.name;
  document.getElementById("classLife").textContent="LIFE "+c.life;
  document.getElementById("classLevels").innerHTML=c.levels.map((v,i)=>`
@@ -530,14 +567,22 @@ function leaveChallenge(){
  }
  go("home");
 }
+
+/* 称号判定 */
 function getBadgeRank(record){
  if(!record.passed)return "";
  const tracks=record.tracks||[];
  const allAP=tracks.length===3&&tracks.every(t=>t.ap);
  const allFC=tracks.length===3&&tracks.every(t=>t.ap||t.fc);
+
  if(allAP)return "gold-rainbow";
- const goldCondition=record.className==="Ⅹ"&&record.life>=15;
- if(goldCondition)return allFC?"gold-gold":"gold-silver";
+
+ /* Ⅹの金合格条件 */
+ if(record.className==="Ⅹ"&&record.life>=15){
+  return allFC?"gold-gold":"gold-silver";
+ }
+
+ /* ∞を含む通常の赤銀・赤金 */
  return allFC?"red-gold":"red-silver";
 }
 function finishChallenge(){
@@ -556,18 +601,17 @@ function finishChallenge(){
 }
 function emblemHTML(className,rank){
  if(!rank)return "";
- const secret=className==="∞";
- return `<div class="pass-emblem ${rank}${secret?" secret":""}">
-  <div class="emblem-type">CLASS</div>
+ const infinity=className==="∞"?" infinity":"";
+ return `<div class="pass-emblem ${rank}${infinity}">
+  <div class="emblem-caption">CLASS</div>
   <div class="emblem-class">${escapeHTML(className)}</div>
   <div class="emblem-label">合格</div>
-  <div class="emblem-caption">HOLODORI CLASS</div>
  </div>`;
 }
 function smallBadgeHTML(record){
  if(!record.finished||!record.passed)return "";
  const rank=getBadgeRank(record);
- return `<span class="badge-small ${rank}${record.className==="∞"?" secret":""}">${escapeHTML(record.className)}</span>`;
+ return `<span class="badge-small ${rank}">${escapeHTML(record.className)}</span>`;
 }
 function showResult(r){
  const status=document.getElementById("resultStatus");
@@ -588,7 +632,7 @@ function showResult(r){
  go("result");
 }
 
-/* 共有画像を同期的に生成する */
+/* 共有画像：元のシンプルな青系デザイン */
 function makeShareImage(record){
  const canvas=document.createElement("canvas");
  canvas.width=1080;canvas.height=1350;
@@ -597,48 +641,70 @@ function makeShareImage(record){
  bg.addColorStop(0,"#edf4ff");bg.addColorStop(1,"#dce8fb");
  ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);
 
- /* シンプルな日本語タイトル */
  ctx.textAlign="center";
- ctx.fillStyle="#397ce9";
- ctx.font="900 34px sans-serif";
- ctx.fillText("きなまる式 ホロドリ非公式",540,75);
- ctx.fillText("ランダムクラス認定",540,120);
+ ctx.fillStyle="#397ce9";ctx.font="900 30px sans-serif";
+ ctx.fillText("きなまる式ホロドリ",540,65);
+ ctx.fillText("非公式ランダムクラス認定",540,105);
 
  const rank=record.passed?getBadgeRank(record):"";
- const secret=record.className==="∞";
- const colors={
-  "red-silver":["#e4e7ed","#9ca6b5","#edf0f5"],
-  "gold-silver":["#e4e7ed","#9ca6b5","#edf0f5"],
-  "red-gold":["#fff0a8","#c18b25","#ffe18a"],
-  "gold-gold":["#fff0a8","#c18b25","#ffe18a"],
-  "gold-rainbow":["#ff6475","#55d6a0","#579bff"]
- };
- const palette=secret
-  ?["#151020","#392348","#21142f"]
-  :(colors[rank]||["#dfe7f3","#aebbd0","#e8eef8"]);
+ const infinity=record.className==="∞";
+ let palette;
+
+ if(infinity){
+  if(rank==="gold-rainbow"){
+   palette=["#171020","#49275e","#171020"];
+  }else if(rank==="red-gold"){
+   palette=["#171020","#38233e","#171020"];
+  }else{
+   palette=["#100d1c","#30213f","#171020"];
+  }
+ }else{
+  const colors={
+   "red-silver":["#e4e7ed","#9ca6b5","#edf0f5"],
+   "gold-silver":["#e4e7ed","#9ca6b5","#edf0f5"],
+   "red-gold":["#fff0a8","#c18b25","#ffe18a"],
+   "gold-gold":["#fff0a8","#c18b25","#ffe18a"],
+   "gold-rainbow":["#ff6475","#55d6a0","#579bff"]
+  };
+  palette=colors[rank]||["#dfe7f3","#aebbd0","#e8eef8"];
+ }
+
  const grad=ctx.createLinearGradient(300,180,780,600);
  palette.forEach((c,i)=>grad.addColorStop(i/(palette.length-1),c));
 
- ctx.beginPath();ctx.roundRect(330,175,420,420,42);
+ ctx.beginPath();
+ ctx.roundRect(330,175,420,420,42);
  ctx.fillStyle=grad;ctx.fill();
- ctx.strokeStyle=secret?"#9b6bc5":"#ffffff";
- ctx.lineWidth=10;ctx.stroke();
+
+ let borderColor="#ffffff";
+ if(infinity){
+  borderColor=rank==="gold-rainbow"?"#bd83ff":rank==="red-gold"?"#d6a33d":"#aeb8c8";
+ }
+ ctx.strokeStyle=borderColor;ctx.lineWidth=10;ctx.stroke();
+
  ctx.beginPath();ctx.roundRect(352,197,376,376,30);
- ctx.strokeStyle=secret?"#c9a0ff":"#ffffffb0";
+ ctx.strokeStyle=infinity?"#d8c4ed":"#ffffffb0";
  ctx.lineWidth=5;ctx.stroke();
 
- ctx.fillStyle=secret?"#e3c6ff":rank&&rank.startsWith("red")?"#d52335":"#fff0a8";
- ctx.shadowColor=secret?"#a45aff":"#60431d";
- ctx.shadowBlur=secret?12:8;
-
- /* 称号の上にCLASS */
- ctx.font="900 34px sans-serif";
+ ctx.fillStyle="#ffffff";
+ ctx.font="900 25px sans-serif";
  ctx.fillText("CLASS",540,270);
 
+ let textColor;
+ if(infinity){
+  textColor=rank==="gold-rainbow"?"#ffd75e":"#ed303f";
+ }else{
+  textColor=rank&&rank.startsWith("red")?"#d52335":"#fff0a8";
+ }
+
+ ctx.fillStyle=textColor;
  ctx.font="1000 155px sans-serif";
+ ctx.shadowColor=infinity?"#a65cff":"#60431d";
+ ctx.shadowBlur=infinity?14:8;
  ctx.fillText(record.className,540,405);
+
  ctx.font="1000 75px sans-serif";
- ctx.fillText(record.passed?"合格":"不合格",540,500);
+ ctx.fillText(record.passed?"合格":"不合格",540,505);
  ctx.shadowBlur=0;
 
  ctx.fillStyle="#19263e";ctx.font="900 42px sans-serif";
@@ -662,25 +728,28 @@ function makeShareImage(record){
    title=title.slice(0,-2)+"…";
   }
   ctx.fillText(title,115,y);
+
   ctx.textAlign="right";ctx.fillStyle="#397ce9";
   ctx.font="900 24px sans-serif";
   ctx.fillText("Lv."+t.song.level,965,y);
+
   ctx.textAlign="left";ctx.fillStyle="#7c8ba2";
   ctx.font="bold 20px sans-serif";
   ctx.fillText("GREAT "+t.counts.great+"  GOOD "+t.counts.good+"  BAD "+t.counts.bad+"  MISS "+t.counts.miss,115,y+35);
+
   ctx.fillStyle=t.ap?"#8a65dc":t.fc?"#e19b36":"#8490a5";
   ctx.font="900 20px sans-serif";
   ctx.fillText(t.ap?"ALL PERFECT":t.fc?"FULL COMBO":"CLEAR",115,y+68);
  });
 
- /* ハッシュタグは画像には入れない */
  ctx.textAlign="center";
  ctx.fillStyle="#8490a5";ctx.font="bold 21px sans-serif";
- ctx.fillText("きなまる式 ホロドリ非公式ランダムクラス認定",540,1290);
+ ctx.fillText("きなまる式ホロドリ非公式ランダムクラス認定",540,1290);
+
  return canvas.toDataURL("image/png");
 }
 
-/* iPhoneの共有メニューをボタン操作から直接呼び出す */
+/* iPhoneの共有メニュー */
 function shareResult(){
  const button=document.getElementById("shareButton");
 
@@ -711,7 +780,7 @@ function shareResult(){
   if(navigator.share){
    const shareData={
     files:[file],
-    title:"きなまる式 ホロドリ非公式ランダムクラス認定",
+    title:"きなまる式ホロドリ非公式ランダムクラス認定",
     text:"#きなまる式ホロドリ非公式ランダムクラス認定"
    };
 
@@ -801,6 +870,7 @@ function renderHistory(){
   return `<div class="detail-row"><span>CLASS ${c.name}</span><strong>${s.passes}/${s.attempts} 合格　${rate}</strong></div>
   <div class="muted" style="text-align:right;margin:3px 0 9px">最高残りLIFE：${s.attempts?s.best:"—"}</div>`;
  }).join("");
+
  document.getElementById("songDrawTotal").textContent=stats.totalDraws||0;
  const songStats=document.getElementById("songStats");
  const entries=Object.entries(stats.appearances||{}).sort((a,b)=>b[1]-a[1]);
@@ -809,6 +879,7 @@ function renderHistory(){
   const rate=stats.totalDraws?((count/stats.totalDraws)*100).toFixed(1):"0.0";
   return `<div class="stat-song"><span>${escapeHTML(title)} <small class="muted">Lv.${escapeHTML(level)}</small></span><span>${count}回<br><small class="muted">${rate}%</small></span></div>`;
  }).join(""):"<p class='muted'>まだ抽選データがありません。</p>";
+
  const list=document.getElementById("historyList");
  list.innerHTML=history.length?history.map(r=>`
   <div class="record clickable" role="button" tabindex="0"
@@ -832,6 +903,7 @@ function openDetail(id){
    <small>${t?(t.ap?"ALL PERFECT":t.fc?"FULL COMBO":"通常クリア"):"—"}</small>
    ${t?`<small>−${t.lost} LIFE → 残り ${t.life}</small>`:""}</div>`;
  }).join("");
+
  document.getElementById("detailContent").innerHTML=`
   ${r.finished&&r.passed?emblemHTML(r.className,rank):""}
   <div class="big">CLASS ${escapeHTML(r.className)}</div>
