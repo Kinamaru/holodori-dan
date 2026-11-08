@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,6 +13,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif}
 button{border:0;border-radius:14px;padding:13px 17px;font-size:14px;font-weight:800;cursor:pointer}
+button:disabled{opacity:.4;cursor:not-allowed}
 .primary{background:var(--blue);color:white}
 .secondary{background:#e8effb;color:#3268bd}
 .full{width:100%;margin:5px 0}
@@ -33,10 +35,9 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .tabs{position:fixed;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(12px);display:flex;justify-content:center;border-top:1px solid #e5eaf2;padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:10}
 .tabs button{background:none;color:#8490a3;font-size:11px;padding:8px 18px}
 .tabs button.active{color:var(--blue)}
-/* class selection */
 .class-rail-wrap{overflow:hidden;margin:10px 0 16px}
 .class-rail{display:flex;gap:9px;transition:transform .35s cubic-bezier(.2,.8,.2,1);width:max-content}
-.rail-item{width:47px;height:42px;border-radius:13px;background:#e5ebf5;color:#8390a5;font-size:15px;display:grid;place-items:center;transition:.3s}
+.rail-item{width:47px;height:42px;border-radius:13px;background:#e5ebf5;color:#8390a5;font-size:15px;display:grid;place-items:center}
 .rail-item.selected{background:var(--blue);color:white;transform:scale(1.12);box-shadow:0 5px 14px #397ce955}
 .rail-item.secret{background:#2b1c3b;color:#c9a0ff}
 .class-card{border-radius:24px;padding:22px 15px;text-align:center;background:linear-gradient(145deg,#eaf2ff,#fff);border:1px solid #dce8fa;transition:background .3s}
@@ -56,7 +57,6 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .class-arrows button{width:65px;font-size:20px}
 .special-reveal{animation:secretReveal .85s ease}
 @keyframes secretReveal{0%{opacity:0;transform:translateX(80px) scale(.8);filter:brightness(0)}55%{opacity:1;transform:translateX(-8px) scale(1.05);filter:brightness(2)}100%{transform:none;filter:none}}
-/* challenge */
 .challenge-top{display:flex;justify-content:space-between;font-size:12px;font-weight:900;color:var(--blue)}
 .life-number{font-size:30px;font-weight:900}
 .gauge{display:flex;gap:4px;margin:10px 0 16px}
@@ -76,12 +76,12 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .diff.NORMAL{background:var(--normal)}
 .diff.HARD{background:var(--hard)}
 .diff.EXPERT{background:var(--expert)}
-.input-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
-.input-box{text-align:center;background:#f6f8fc;border-radius:13px;padding:9px 3px}
-.input-box label{font-size:10px;font-weight:900;color:var(--muted)}
-.counter{display:flex;align-items:center;justify-content:center;gap:2px;margin-top:6px}
-.counter button{padding:5px 7px;background:#e4ebf7;color:#3268bd;font-size:17px;min-width:27px}
-.counter input{width:31px;border:0;background:transparent;text-align:center;font-size:17px;font-weight:900;color:var(--ink);padding:3px 0}
+.input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.input-box{text-align:center;background:#f6f8fc;border-radius:13px;padding:12px 5px}
+.input-box label{font-size:11px;font-weight:900;color:var(--muted)}
+.counter{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:7px}
+.counter button{padding:6px 9px;background:#e4ebf7;color:#3268bd;font-size:17px;min-width:34px}
+.counter input{width:42px;border:0;background:transparent;text-align:center;font-size:18px;font-weight:900;color:var(--ink);padding:3px 0}
 .draw-panel{text-align:center;padding:42px 15px}
 .draw-word{font-size:25px;font-weight:900;margin:28px 0}
 .draw-word.flash{animation:drawFlash .45s ease}
@@ -94,9 +94,15 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .record{padding:13px 0;border-bottom:1px solid #edf0f5}
 .record strong{font-size:13px}
 .record small{display:block;color:var(--muted);margin-top:5px;line-height:1.6}
+.record.clickable{cursor:pointer;position:relative;padding:15px 8px;border-radius:12px}
+.record.clickable:active{background:#f3f6fc}
+.record.clickable:after{content:"›";position:absolute;right:10px;top:25px;color:var(--blue);font-size:22px;font-weight:900}
 .tag{display:inline-block;padding:5px 9px;border-radius:20px;background:#edf2fa;color:#64738c;font-size:10px;font-weight:900}
 .tag.unplayed{background:#fff0d7;color:#b47a19}
 .detail-row{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #edf0f5;font-size:12px}
+.stat-heading{font-size:13px;font-weight:900;margin:18px 0 8px}
+.stat-song{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #edf0f5;font-size:12px}
+.stat-song span:last-child{text-align:right;white-space:nowrap;font-weight:800}
 .loading{position:fixed;inset:0;background:var(--bg);z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .loadbar{width:180px;height:5px;background:#dce6f6;border-radius:9px;margin-top:20px;overflow:hidden}
 .loadbar div{height:100%;width:0;background:var(--blue);animation:load 1s linear forwards}
@@ -176,7 +182,7 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
   <div class="draw-word" id="drawText">抽選中...</div>
   <p class="muted">CHALLENGE 3 TRACKS</p>
  </div>
- <button class="primary full" id="drawNext" style="display:none" onclick="startChallenge()">挑戦する</button>
+ <button class="primary full" id="drawNext" style="display:none" onclick="advanceDraw()">挑戦する</button>
 </section>
 
 <section id="challenge" class="screen">
@@ -215,7 +221,10 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
   <div class="section-title">TRACK RESULTS</div>
   <div id="resultTracks"></div>
  </div>
- <button class="primary full" onclick="retryChallenge()">同じ3曲でもう一度</button>
+ <div class="panel" style="text-align:center">
+  <strong id="retryPrompt">もう一度挑戦しますか？</strong>
+  <button class="primary full" onclick="retryChallenge()">同じ3曲でもう一度</button>
+ </div>
  <button class="secondary full" onclick="go('classes')">クラス選択へ</button>
  <button class="secondary full" onclick="go('history')">記録を見る</button>
 </section>
@@ -223,14 +232,29 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 <section id="history" class="screen">
  <div class="section-title">RECORD & HISTORY</div>
  <div class="panel">
+  <div class="stat-heading">全体成績</div>
   <div class="detail-row"><span>挑戦回数</span><strong id="statAttempts">0</strong></div>
   <div class="detail-row"><span>合格回数</span><strong id="statPasses">0</strong></div>
+  <div class="detail-row"><span>不合格回数</span><strong id="statFails">0</strong></div>
   <div class="detail-row"><span>合格率</span><strong id="statRate">—</strong></div>
   <div class="detail-row"><span>最高残りLIFE</span><strong id="statBest">—</strong></div>
  </div>
+
+ <div class="panel">
+  <div class="stat-heading">クラス別成績</div>
+  <div id="classStats"></div>
+ </div>
+
+ <div class="panel">
+  <div class="stat-heading">楽曲抽選統計</div>
+  <p class="muted">ランダム抽選で選ばれた回数と出現率。再挑戦による重複は含みません。</p>
+  <div class="detail-row"><span>抽選された曲数（延べ）</span><strong id="songDrawTotal">0</strong></div>
+  <div id="songStats"></div>
+ </div>
+
  <div class="section-title">HISTORY</div>
  <div class="panel" id="historyList"></div>
- <button class="secondary full" onclick="clearHistory()">記録をすべて削除</button>
+ <button class="secondary full" onclick="clearHistory()">記録・統計をすべて削除</button>
 </section>
 
 <section id="detail" class="screen">
@@ -253,29 +277,72 @@ const classes=[
  {name:"Ⅲ",life:12,levels:[18,18,19],ready:false},
  {name:"Ⅳ",life:15,levels:[19,19,20],ready:false},
  {name:"Ⅴ",life:18,levels:[20,20,21],ready:false},
- {name:"Ⅹ",life:25,levels:[28, [28,29], 29],ready:true},
- {name:"∞",life:10,levels:[[29,30], [29,30], 30],ready:true,secret:true}
+ {name:"Ⅹ",life:25,levels:[28,[28,29],29],ready:true},
+ {name:"∞",life:10,levels:[[29,30],[29,30],30],ready:true,secret:true}
 ];
+
 const songs={
 28:["星屑カプセル","Play Dice !","爆ラブ+ケミストリー","ホットダック！","メギツネ","Lifetime Showtime","GHOST","ころねの最凶天災☆わんだふぁー♡わーるど","マーシャル・マキシマイザー","Carbonated Love","なかま歌","Slap by Step","地獄でおあうぜ！スパちょこるなたん","シミュラクル","青く在れ","ばーちゃらぶ","怪宴スペクタクル","ぽ","チェリーポップ","CORE//UNBREAKABLE","Miracle Palette","ω猫"],
 29:["Grave of Halo","リーサルドーズ・パラノイド","幽霊船戦","夢色ワンダー","ヒャダインのじょーじょーゆーじょー","PSYCHO","Monsters and Men","FIRE BIRD"],
 30:["KINGWORLD","六兆年と一夜物語"]
 };
+
 const diffColors={EASY:"#65c995",NORMAL:"#FEBB54",HARD:"#FC93B6",EXPERT:"#9A93FE"};
-let selected=5,secretUnlocked=false,chosen=[],track=0,life=0,lifeMax=0,trackResults=[],currentId=null;
-let history=JSON.parse(localStorage.getItem("holoHistory")||"[]");
-let stats=JSON.parse(localStorage.getItem("holoStats")||'{"attempts":0,"passes":0,"best":0}');
+
+let selected=5;
+let secretUnlocked=localStorage.getItem("holoSecretUnlocked")==="true";
+let unlockCount=0;
+let chosen=[];
+let track=0;
+let life=0;
+let lifeMax=0;
+let trackResults=[];
+let currentId=null;
 let activeRecord=null;
+let drawAction="start";
+let drawTimer=null;
+
+function safeParse(key,fallback){
+ try{
+  const value=JSON.parse(localStorage.getItem(key));
+  return value===null?fallback:value;
+ }catch(e){return fallback;}
+}
+let history=safeParse("holoHistory",[]);
+let stats=safeParse("holoStats",{
+ attempts:0,passes:0,best:0,appearances:{},totalDraws:0,byClass:{}
+});
+
+stats.appearances=stats.appearances||{};
+stats.totalDraws=stats.totalDraws||0;
+stats.byClass=stats.byClass||{};
+
+function ensureClassStats(name){
+ if(!stats.byClass[name]){
+  stats.byClass[name]={attempts:0,passes:0,best:0};
+ }
+ return stats.byClass[name];
+}
 
 function save(){
  localStorage.setItem("holoHistory",JSON.stringify(history));
  localStorage.setItem("holoStats",JSON.stringify(stats));
+ localStorage.setItem("holoSecretUnlocked",String(secretUnlocked));
+}
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function levelText(level){
+ return Array.isArray(level)?level[0]+"〜"+level[1]:String(level);
 }
 function go(id){
+ if(drawTimer){clearInterval(drawTimer);drawTimer=null;}
  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
  document.getElementById(id).classList.add("active");
  document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
- if(["home","classes","history"].includes(id))document.getElementById("tab-"+id).classList.add("active");
+ if(["home","classes","history"].includes(id)){
+  document.getElementById("tab-"+id).classList.add("active");
+ }
  if(id==="home")renderHome();
  if(id==="classes")renderClass();
  if(id==="history")renderHistory();
@@ -287,7 +354,7 @@ function renderRail(){
   const b=document.createElement("button");
   b.className="rail-item"+(i===selected?" selected":"")+(c.secret?" secret":"");
   b.textContent=c.name;
-  b.onclick=()=>{selected=i;renderClass()};
+  b.onclick=()=>{selected=i;renderClass();};
   rail.appendChild(b);
  });
  const item=rail.children[selected];
@@ -299,34 +366,48 @@ function renderRail(){
 }
 function renderClass(){
  renderRail();
- const c=classes[selected],card=document.getElementById("classCard");
+ const c=classes[selected];
+ const card=document.getElementById("classCard");
  card.classList.toggle("secret",!!c.secret);
  document.getElementById("className").textContent="CLASS "+c.name;
  document.getElementById("classSymbol").textContent=c.name;
  document.getElementById("classLife").textContent="LIFE "+c.life;
  document.getElementById("classLevels").innerHTML=c.levels.map((v,i)=>`
-  <div class="level-cell"><small>${["1ST","2ND","3RD"][i]} TRACK</small><strong>Lv.${v}</strong></div>`).join("");
+  <div class="level-cell">
+   <small>${["1ST","2ND","3RD"][i]} TRACK</small>
+   <strong>Lv.${levelText(v)}</strong>
+  </div>`).join("");
 }
 function moveClass(dir){
- if(selected===5 && dir===1 && !secretUnlocked){
-  window.unlockCount=(window.unlockCount||0)+1;
-  if(window.unlockCount>=5){
-   secretUnlocked=true;selected=6;
+ if(selected===5&&dir===1&&!secretUnlocked){
+  unlockCount++;
+  if(unlockCount>=5){
+   secretUnlocked=true;
+   selected=6;
+   save();
    renderClass();
-   document.getElementById("classCard").classList.add("special-reveal");
-   setTimeout(()=>document.getElementById("classCard").classList.remove("special-reveal"),900);
+   const card=document.getElementById("classCard");
+   card.classList.add("special-reveal");
+   setTimeout(()=>card.classList.remove("special-reveal"),900);
    return;
   }
- }else if(selected===6 && dir===-1){selected=5;}
- else{
-  window.unlockCount=0;
+  renderClass();
+  return;
+ }
+ if(selected===6&&dir===-1){
+  selected=5;
+ }else{
+  unlockCount=0;
   selected=Math.max(0,Math.min(secretUnlocked?6:5,selected+dir));
  }
  renderClass();
 }
 function confirmClass(){
  const c=classes[selected];
- if(!c.ready){alert("このクラスの曲リストは準備中です！");return;}
+ if(!c.ready){
+  alert("このクラスの曲リストは準備中です！");
+  return;
+ }
  document.getElementById("confirmName").textContent="CLASS "+c.name;
  document.getElementById("confirmLife").textContent="LIFE "+c.life;
  go("confirm");
@@ -335,34 +416,95 @@ function pickSong(level){
  const possible=Array.isArray(level)?level:[level];
  const lv=possible[Math.floor(Math.random()*possible.length)];
  const pool=songs[lv];
+ if(!pool||!pool.length)throw new Error("Lv."+lv+"の曲リストがありません");
  return {title:pool[Math.floor(Math.random()*pool.length)],level:lv,diff:"EXPERT"};
+}
+function countSongDraws(songList){
+ songList.forEach(song=>{
+  const key=song.title+"|"+song.level;
+  stats.appearances[key]=(stats.appearances[key]||0)+1;
+  stats.totalDraws++;
+ });
+}
+function animateDraw(action){
+ drawAction=action;
+ const txt=document.getElementById("drawText");
+ const btn=document.getElementById("drawNext");
+ btn.style.display="none";
+ btn.textContent=action==="start"?"挑戦する":"次の曲へ！";
+ const messages=["抽選中...","SELECTING...","READY?","抽選完了！"];
+ let n=0;
+ txt.textContent=messages[0];
+ if(drawTimer)clearInterval(drawTimer);
+ drawTimer=setInterval(()=>{
+  txt.textContent=messages[Math.min(n,3)];
+  txt.classList.remove("flash");
+  void txt.offsetWidth;
+  txt.classList.add("flash");
+  n++;
+  if(n>=4){
+   clearInterval(drawTimer);
+   drawTimer=null;
+   btn.style.display="block";
+  }
+ },450);
 }
 function drawSongs(){
  const c=classes[selected];
- chosen=c.levels.map(pickSong);
- track=0;life=c.life;lifeMax=c.life;trackResults=[];
+ try{
+  const result=c.levels.map(pickSong);
+  if(result.length!==3)throw new Error("3曲を抽選できませんでした");
+  chosen=result;
+ }catch(e){
+  alert("抽選に失敗しました："+e.message);
+  return;
+ }
+
+ countSongDraws(chosen);
+
+ track=0;
+ life=c.life;
+ lifeMax=c.life;
+ trackResults=[];
  currentId=Date.now();
- activeRecord={id:currentId,className:c.name,life:c.life,lifeMax:c.life,played:false,finished:false,tracks:[],chosen:chosen,date:new Date().toLocaleString("ja-JP")};
- history.unshift(activeRecord);history=history.slice(0,10);save();
+ activeRecord={
+  id:currentId,className:c.name,life:c.life,lifeMax:c.life,
+  played:false,finished:false,tracks:[],chosen:chosen,
+  date:new Date().toLocaleString("ja-JP"),counted:false
+ };
+ history.unshift(activeRecord);
+ history=history.slice(0,10);
+ save();
  go("draw");
- const txt=document.getElementById("drawText"),btn=document.getElementById("drawNext");
- btn.style.display="none";
- let n=0;
- const timer=setInterval(()=>{
-  txt.textContent=["抽選中...","SELECTING...","READY?","抽選完了！"][Math.min(n,3)];
-  txt.classList.remove("flash");void txt.offsetWidth;txt.classList.add("flash");
-  n++;
-  if(n>3){clearInterval(timer);btn.style.display="block";}
- },450);
+ animateDraw("start");
+}
+function advanceDraw(){
+ const btn=document.getElementById("drawNext");
+ btn.disabled=true;
+ if(drawAction==="start"){
+  startChallenge();
+ }else{
+  showTrack();
+  go("challenge");
+ }
+ btn.disabled=false;
 }
 function startChallenge(){
- if(!activeRecord || !chosen.length)return;
- activeRecord.played=true;save();
+ if(!activeRecord||!chosen.length)return;
+ if(!activeRecord.counted){
+  stats.attempts++;
+  ensureClassStats(activeRecord.className).attempts++;
+  activeRecord.counted=true;
+ }
+ activeRecord.played=true;
+ save();
  showTrack();
  go("challenge");
 }
 function showTrack(){
- const c=classes[selected],song=chosen[track];
+ const c=classes.find(x=>x.name===activeRecord.className)||classes[selected];
+ const song=chosen[track];
+ if(!song){alert("曲情報が見つかりません");return;}
  document.getElementById("challengeClass").textContent="CLASS "+c.name;
  document.getElementById("trackNumber").textContent=["1ST TRACK","2ND TRACK","3RD TRACK"][track];
  document.getElementById("lifeNow").textContent=life;
@@ -372,9 +514,10 @@ function showTrack(){
  document.getElementById("songDiff").textContent=song.diff;
  document.getElementById("songDiff").className="diff "+song.diff;
  document.getElementById("songCard").classList.toggle("secret",!!c.secret);
- document.getElementById("songCard").classList.remove("reveal");
- void document.getElementById("songCard").offsetWidth;
- document.getElementById("songCard").classList.add("reveal");
+ const card=document.getElementById("songCard");
+ card.classList.remove("reveal");
+ void card.offsetWidth;
+ card.classList.add("reveal");
  ["great","good","bad","miss"].forEach(id=>document.getElementById(id).value=0);
  renderGauge();
 }
@@ -394,9 +537,11 @@ function changeCount(id,delta){
  input.value=Math.max(0,(parseInt(input.value)||0)+delta);
 }
 function submitTrack(){
+ if(!activeRecord||track>=3)return;
  const counts={};
  ["great","good","bad","miss"].forEach(id=>{
-  counts[id]=Math.max(0,parseInt(document.getElementById(id).value)||0);
+  const raw=document.getElementById(id).value;
+  counts[id]=Math.max(0,Math.floor(Number(raw)||0));
  });
  const lost=counts.great+counts.good*2+counts.bad*3+counts.miss*5;
  life=Math.max(0,life-lost);
@@ -407,23 +552,20 @@ function submitTrack(){
  activeRecord.tracks=trackResults.slice();
  activeRecord.life=life;
  save();
- if(life===0 && track<2){
-  if(!confirm("LIFEが0になりました。不合格確定です。残りの曲も続けますか？")){
-   finishChallenge();return;
-  }
+
+ // LIFEが0になったら残りの曲をプレイせず即不合格
+ if(life===0){
+  finishChallenge();
+  return;
  }
+
  track++;
  if(track<3){
   go("draw");
-  const txt=document.getElementById("drawText"),btn=document.getElementById("drawNext");
-  btn.style.display="none";
-  txt.textContent="NEXT TRACK...";
-  txt.classList.remove("flash");void txt.offsetWidth;txt.classList.add("flash");
-  setTimeout(()=>{txt.textContent="抽選完了！";txt.classList.add("flash");btn.style.display="block";btn.textContent="次の曲へ！";},650);
-  btn.onclick=()=>{
-   btn.onclick=null;btn.textContent="挑戦する";showTrack();go("challenge");
-  };
- }else finishChallenge();
+  animateDraw("next");
+ }else{
+  finishChallenge();
+ }
 }
 function leaveChallenge(){
  if(!confirm("ここまでの結果を保存して中断しますか？"))return;
@@ -437,11 +579,19 @@ function leaveChallenge(){
  go("home");
 }
 function finishChallenge(){
- const passed=life>=1;
+ if(!activeRecord||activeRecord.finished)return;
+ const passed=trackResults.length===3&&life>=1;
  const allAP=trackResults.length===3&&trackResults.every(t=>t.ap);
  const allFC=trackResults.length===3&&trackResults.every(t=>t.ap||t.fc);
- if(passed)stats.passes++;
+ const classStat=ensureClassStats(activeRecord.className);
+
+ if(passed){
+  stats.passes++;
+  classStat.passes++;
+ }
  stats.best=Math.max(stats.best,life);
+ classStat.best=Math.max(classStat.best,life);
+
  activeRecord.tracks=trackResults.slice();
  activeRecord.life=life;
  activeRecord.passed=passed;
@@ -457,23 +607,39 @@ function showResult(r){
  status.className="result-status "+(!r.passed?"fail":r.rank==="AP"?"rainbow":r.rank==="FC"?"gold":"silver");
  document.getElementById("resultLife").textContent="LIFE "+r.life+" / "+r.lifeMax;
  document.getElementById("resultClass").textContent="CLASS "+r.className;
+ document.getElementById("retryPrompt").textContent=r.passed?"もう一度挑戦しますか？":"不合格！同じ3曲に再挑戦しますか？";
  document.getElementById("resultTracks").innerHTML=r.tracks.map((t,i)=>`
-  <div class="record"><strong>${i+1}. ${escapeHTML(t.song.title)}　Lv.${t.song.level}</strong>
-  <small>GREAT ${t.counts.great} / GOOD ${t.counts.good} / BAD ${t.counts.bad} / MISS ${t.counts.miss}</small>
-  <small>−${t.lost} LIFE → 残り ${t.life}</small>
-  <small>${t.ap?"🌈 ALL PERFECT":t.fc?"✨ FULL COMBO":"通常クリア"}</small></div>`).join("");
+  <div class="record">
+   <strong>${i+1}. ${escapeHTML(t.song.title)}　Lv.${t.song.level}</strong>
+   <small>GREAT ${t.counts.great} / GOOD ${t.counts.good} / BAD ${t.counts.bad} / MISS ${t.counts.miss}</small>
+   <small>−${t.lost} LIFE → 残り ${t.life}</small>
+   <small>${t.ap?"🌈 ALL PERFECT":t.fc?"✨ FULL COMBO":"通常クリア"}</small>
+  </div>`).join("");
  go("result");
 }
 function retryChallenge(){
- chosen=activeRecord.chosen.slice();
- track=0;trackResults=[];life=lifeMax;
+ if(!activeRecord||!activeRecord.chosen)return;
+ const previous=activeRecord;
+ chosen=previous.chosen.slice();
+ track=0;
+ trackResults=[];
+ life=previous.lifeMax;
+ lifeMax=previous.lifeMax;
  currentId=Date.now();
- activeRecord={id:currentId,className:classes[selected].name,life,lifeMax,played:true,finished:false,tracks:[],chosen:chosen,date:new Date().toLocaleString("ja-JP")};
- history.unshift(activeRecord);history=history.slice(0,10);save();
- showTrack();go("challenge");
-}
-function escapeHTML(s){
- return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+ activeRecord={
+  id:currentId,className:previous.className,life,lifeMax,
+  played:true,finished:false,tracks:[],chosen:chosen,
+  date:new Date().toLocaleString("ja-JP"),counted:true
+ };
+
+ stats.attempts++;
+ ensureClassStats(activeRecord.className).attempts++;
+ history.unshift(activeRecord);
+ history=history.slice(0,10);
+ save();
+ showTrack();
+ go("challenge");
 }
 function renderHome(){
  document.getElementById("homeAttempts").textContent=stats.attempts;
@@ -483,64 +649,149 @@ function renderHome(){
  document.getElementById("latest").innerHTML=r?recordSummary(r):"まだ記録がありません。";
 }
 function recordSummary(r){
- const status=r.finished?(r.passed?"合格":"不合格"):"未プレイ";
- return `<strong>CLASS ${r.className}　${status}</strong>
- <small class="muted">${r.date} · LIFE ${r.life}/${r.lifeMax}</small>
- <button class="secondary full" onclick="openDetail(${r.id})">詳細を見る</button>`;
+ const status=r.finished?(r.passed?"合格":"不合格"):"未プレイ・中断";
+ return `<strong>CLASS ${escapeHTML(r.className)}　${status}</strong>
+ <small class="muted">${escapeHTML(r.date)} · LIFE ${r.life}/${r.lifeMax}</small>
+ <small class="muted">タップして詳細を見る ›</small>
+ <div onclick="openDetail(${r.id})" style="position:absolute;inset:0"></div>`;
 }
 function renderHistory(){
  document.getElementById("statAttempts").textContent=stats.attempts;
  document.getElementById("statPasses").textContent=stats.passes;
+ document.getElementById("statFails").textContent=Math.max(0,stats.attempts-stats.passes);
  document.getElementById("statRate").textContent=stats.attempts?Math.round(stats.passes/stats.attempts*100)+"%":"—";
  document.getElementById("statBest").textContent=stats.attempts?stats.best:"—";
+
+ const classStats=document.getElementById("classStats");
+ classStats.innerHTML=classes.map(c=>{
+  const s=stats.byClass[c.name]||{attempts:0,passes:0,best:0};
+  const rate=s.attempts?Math.round(s.passes/s.attempts*100)+"%":"—";
+  return `<div class="detail-row">
+   <span>CLASS ${c.name}</span>
+   <strong>${s.passes}/${s.attempts} 合格　${rate}</strong>
+  </div>
+  <div class="muted" style="text-align:right;margin:3px 0 9px">最高残りLIFE：${s.attempts?s.best:"—"}</div>`;
+ }).join("");
+
+ document.getElementById("songDrawTotal").textContent=stats.totalDraws||0;
+ const songStats=document.getElementById("songStats");
+ const entries=Object.entries(stats.appearances||{}).sort((a,b)=>b[1]-a[1]);
+ songStats.innerHTML=entries.length?entries.map(([key,count])=>{
+  const split=key.lastIndexOf("|");
+  const title=key.slice(0,split);
+  const level=key.slice(split+1);
+  const rate=stats.totalDraws?((count/stats.totalDraws)*100).toFixed(1):"0.0";
+  return `<div class="stat-song">
+   <span>${escapeHTML(title)} <small class="muted">Lv.${escapeHTML(level)}</small></span>
+   <span>${count}回<br><small class="muted">${rate}%</small></span>
+  </div>`;
+ }).join(""):"<p class='muted'>まだ抽選データがありません。</p>";
+
  const list=document.getElementById("historyList");
  list.innerHTML=history.length?history.map(r=>`
-  <div class="record">
-   <strong>CLASS ${r.className}　${r.finished?(r.passed?"合格":"不合格"):"未プレイ"}</strong>
-   <small>${r.date} · LIFE ${r.life}/${r.lifeMax}</small>
-   <button class="secondary" style="padding:8px 12px;margin-top:8px" onclick="openDetail(${r.id})">詳細を見る</button>
-   ${!r.finished?`<button class="primary" style="padding:8px 12px;margin:8px 0 0 5px" onclick="resumeRecord(${r.id})">挑戦する</button>`:""}
-   <button class="secondary" style="padding:8px 12px;margin:8px 0 0 5px" onclick="deleteRecord(${r.id})">削除</button>
+  <div class="record clickable" role="button" tabindex="0"
+   onclick="openDetail(${r.id})"
+   onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDetail(${r.id})}">
+   <strong>CLASS ${escapeHTML(r.className)}　${r.finished?(r.passed?"合格":"不合格"):"未プレイ・中断"}</strong>
+   <small>${escapeHTML(r.date)} · LIFE ${r.life}/${r.lifeMax}</small>
+   <small>タップして詳細を見る</small>
   </div>`).join(""):"記録はありません。";
 }
 function openDetail(id){
- const r=history.find(x=>x.id===id);if(!r)return;
+ const r=history.find(x=>x.id===id);
+ if(!r)return;
  const tracks=[0,1,2].map(i=>{
   const t=(r.tracks||[])[i];
-  return `<div class="record"><strong>${i+1}曲目：${t?escapeHTML(t.song.title)+" Lv."+t.song.level:"?"}</strong>
-  <small>${t?`GREAT ${t.counts.great} / GOOD ${t.counts.good} / BAD ${t.counts.bad} / MISS ${t.counts.miss}`:"未公開"}</small>
-  <small>${t?(t.ap?"ALL PERFECT":t.fc?"FULL COMBO":"通常クリア"):"—"}</small></div>`;
+  let title="?";
+  if(t)title=escapeHTML(t.song.title)+" Lv."+t.song.level;
+  else if(r.chosen&&r.chosen[i]){
+   title=escapeHTML(r.chosen[i].title)+" Lv."+r.chosen[i].level;
+  }
+  return `<div class="record">
+   <strong>${i+1}曲目：${title}</strong>
+   <small>${t?`GREAT ${t.counts.great} / GOOD ${t.counts.good} / BAD ${t.counts.bad} / MISS ${t.counts.miss}`:"未プレイ"}</small>
+   <small>${t?(t.ap?"ALL PERFECT":t.fc?"FULL COMBO":"通常クリア"):"—"}</small>
+   ${t?`<small>−${t.lost} LIFE → 残り ${t.life}</small>`:""}
+  </div>`;
  }).join("");
+
  document.getElementById("detailContent").innerHTML=`
-  <div class="big">CLASS ${r.className}</div>
-  <p>${r.finished?(r.passed?"合格":"不合格"):"未プレイ"}</p>
-  <p class="muted">${r.date}</p>
+  <div class="big">CLASS ${escapeHTML(r.className)}</div>
+  <p>${r.finished?(r.passed?"合格":"不合格"):"未プレイ・中断"}</p>
+  <p class="muted">${escapeHTML(r.date)}</p>
   <div class="detail-row"><span>残りLIFE</span><strong>${r.life}/${r.lifeMax}</strong></div>
-  ${tracks}`;
+  ${tracks}
+  ${!r.finished?`<button class="primary full" onclick="resumeRecord(${r.id})">この記録から再開する</button>`:""}
+  <button class="secondary full" onclick="deleteRecord(${r.id});go('history')">この記録を削除</button>`;
  go("detail");
 }
 function resumeRecord(id){
- const r=history.find(x=>x.id===id);if(!r)return;
- activeRecord=r;currentId=id;
- chosen=r.chosen||[];
+ const r=history.find(x=>x.id===id);
+ if(!r||r.finished)return;
+ if(!r.chosen||!r.chosen.length){
+  alert("曲情報が見つかりません。");
+  return;
+ }
+ activeRecord=r;
+ currentId=id;
+ chosen=r.chosen;
  selected=classes.findIndex(c=>c.name===r.className);
  if(selected<0)selected=5;
+ if(selected===6){
+  secretUnlocked=true;
+  save();
+ }
  trackResults=r.tracks||[];
- life=r.life;lifeMax=r.lifeMax;
+ life=r.life;
+ lifeMax=r.lifeMax;
  track=trackResults.length;
- if(track>=3){alert("この記録は終了しています。");return;}
- if(!chosen.length){alert("曲情報が見つかりません。");return;}
- r.played=true;save();
- showTrack();go("challenge");
+ if(track>=3){
+  alert("この記録は終了しています。");
+  return;
+ }
+ if(!r.counted&&r.played){
+  r.counted=true;
+  stats.attempts++;
+  ensureClassStats(r.className).attempts++;
+ }
+ r.played=true;
+ save();
+ if(track===0&&r.tracks.length===0){
+  go("draw");
+  animateDraw("start");
+ }else{
+  showTrack();
+  go("challenge");
+ }
 }
 function deleteRecord(id){
- history=history.filter(r=>r.id!==id);save();renderHistory();
+ history=history.filter(r=>r.id!==id);
+ save();
+ renderHistory();
+ renderHome();
 }
 function clearHistory(){
  if(!confirm("記録と統計をすべて削除しますか？"))return;
- history=[];stats={attempts:0,passes:0,best:0};save();renderHistory();renderHome();
+ history=[];
+ stats={attempts:0,passes:0,best:0,appearances:{},totalDraws:0,byClass:{}};
+ save();
+ renderHistory();
+ renderHome();
 }
-renderClass();renderHome();
+
+// クラス画面の左右スワイプ
+let touchStartX=0;
+const classCard=document.getElementById("classCard");
+classCard.addEventListener("touchstart",e=>{
+ touchStartX=e.changedTouches[0].clientX;
+},{passive:true});
+classCard.addEventListener("touchend",e=>{
+ const diff=e.changedTouches[0].clientX-touchStartX;
+ if(Math.abs(diff)>45)moveClass(diff<0?1:-1);
+},{passive:true});
+
+renderClass();
+renderHome();
 setTimeout(()=>document.getElementById("loading").style.display="none",1000);
 </script>
 </body>
