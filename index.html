@@ -86,10 +86,68 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .draw-word{font-size:25px;font-weight:900;margin:28px 0}
 .draw-word.flash{animation:drawFlash .45s ease}
 @keyframes drawFlash{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.2);opacity:1}100%{transform:scale(1)}}
+
+/* 合格エンブレム */
+.pass-emblem{
+ width:190px;height:190px;margin:15px auto 20px;
+ border-radius:22px;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;position:relative;
+ overflow:hidden;border:5px solid #ffffff80;
+ box-shadow:0 7px 20px #17233c30,inset 0 0 0 2px #ffffff65;
+}
+.pass-emblem:before{
+ content:"";position:absolute;inset:9px;
+ border:2px solid #ffffffa8;border-radius:15px;
+}
+.pass-emblem:after{
+ content:"";position:absolute;inset:16px;
+ border:1px solid #ffffff75;border-radius:11px;
+}
+
+/* 背景色はランク名の後半で決定 */
+.pass-emblem.red-silver,
+.pass-emblem.gold-silver{
+ background:linear-gradient(145deg,#e4e7ed,#9ca6b5,#edf0f5,#8e9aab);
+}
+.pass-emblem.red-gold,
+.pass-emblem.gold-gold{
+ background:linear-gradient(145deg,#fff0a8,#c18b25,#ffe18a,#a66d12);
+}
+.pass-emblem.gold-rainbow{
+ background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed);
+}
+
+/* 文字色はランク名の前半で決定 */
+.pass-emblem.red-silver .emblem-class,
+.pass-emblem.red-silver .emblem-label,
+.pass-emblem.red-gold .emblem-class,
+.pass-emblem.red-gold .emblem-label{
+ color:#d52335;
+ text-shadow:0 1px 2px #ffffff90;
+}
+.pass-emblem.gold-silver .emblem-class,
+.pass-emblem.gold-silver .emblem-label,
+.pass-emblem.gold-gold .emblem-class,
+.pass-emblem.gold-gold .emblem-label,
+.pass-emblem.gold-rainbow .emblem-class,
+.pass-emblem.gold-rainbow .emblem-label{
+ color:#ffe69a;
+ text-shadow:0 2px 3px #81500a;
+}
+
+.emblem-class{
+ position:relative;z-index:1;font-size:58px;font-weight:1000;
+ line-height:1.1;
+}
+.emblem-label{
+ position:relative;z-index:1;margin-top:9px;font-size:27px;
+ font-weight:1000;letter-spacing:5px;
+}
+.emblem-caption{
+ position:relative;z-index:1;font-size:9px;font-weight:900;
+ letter-spacing:2px;color:#26334a;margin-top:5px
+}
 .result-status{font-size:34px;font-weight:1000}
-.result-status.silver{color:#9aa5b8}
-.result-status.gold{background:linear-gradient(90deg,#a77a1b,#ffe28b,#a77a1b);color:transparent;background-clip:text}
-.result-status.rainbow{background:linear-gradient(90deg,#ff5364,#ffb34e,#f3e75b,#4acb9b,#4c8bff,#b46bff);color:transparent;background-clip:text}
 .result-status.fail{color:#397ce9}
 .record{padding:13px 0;border-bottom:1px solid #edf0f5}
 .record strong{font-size:13px}
@@ -100,9 +158,48 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 .tag{display:inline-block;padding:5px 9px;border-radius:20px;background:#edf2fa;color:#64738c;font-size:10px;font-weight:900}
 .tag.unplayed{background:#fff0d7;color:#b47a19}
 .detail-row{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #edf0f5;font-size:12px}
-.stat-heading{font-size:13px;font-weight:900;margin:18px 0 8px}
 .stat-song{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #edf0f5;font-size:12px}
 .stat-song span:last-child{text-align:right;white-space:nowrap;font-weight:800}
+
+/* 記録メニュー */
+.stat-menu{display:grid;gap:10px;margin:12px 0}
+.stat-menu button{
+ width:100%;background:white;color:var(--ink);text-align:left;
+ padding:17px 18px;border:1px solid #e5ebf4;
+ box-shadow:0 4px 15px #203b6409;display:flex;
+ align-items:center;justify-content:space-between;
+}
+.stat-menu button:active{background:#edf3ff}
+.stat-menu button span:last-child{color:var(--blue);font-size:20px}
+.stat-section{display:none}
+.stat-section.open{display:block;animation:fade .25s ease}
+.stat-section .panel{margin-top:10px}
+.stat-heading{font-size:13px;font-weight:900;margin:5px 0 12px}
+
+/* 履歴用の小型エンブレム */
+.badge-small{
+ display:inline-flex;align-items:center;justify-content:center;
+ min-width:43px;height:43px;border-radius:9px;
+ font-size:11px;font-weight:1000;border:2px solid #ffffffa0;
+ vertical-align:middle;margin-right:7px;
+}
+.badge-small.red-silver,
+.badge-small.gold-silver{
+ background:linear-gradient(145deg,#e4e7ed,#9ca6b5,#edf0f5);
+}
+.badge-small.red-gold,
+.badge-small.gold-gold{
+ background:linear-gradient(145deg,#fff0a8,#c18b25,#ffe18a);
+}
+.badge-small.gold-rainbow{
+ background:linear-gradient(125deg,#ff6475,#ffb94d,#f5e85b,#55d6a0,#579bff,#bd75ed);
+}
+.badge-small.red-silver,
+.badge-small.red-gold{color:#d52335}
+.badge-small.gold-silver,
+.badge-small.gold-gold,
+.badge-small.gold-rainbow{color:#ffe69a}
+
 .loading{position:fixed;inset:0;background:var(--bg);z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .loadbar{width:180px;height:5px;background:#dce6f6;border-radius:9px;margin-top:20px;overflow:hidden}
 .loadbar div{height:100%;width:0;background:var(--blue);animation:load 1s linear forwards}
@@ -204,7 +301,7 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
    <div class="input-box"><label>BAD</label><div class="counter"><button onclick="changeCount('bad',-1)">−</button><input id="bad" value="0" inputmode="numeric"><button onclick="changeCount('bad',1)">＋</button></div></div>
    <div class="input-box"><label>MISS</label><div class="counter"><button onclick="changeCount('miss',-1)">−</button><input id="miss" value="0" inputmode="numeric"><button onclick="changeCount('miss',1)">＋</button></div></div>
   </div>
-  <p class="muted" style="text-align:center">AP：全判定0 / FC：BAD・MISS 0</p>
+  <p class="muted" style="text-align:center">AP：全判定0 / FC：GOOD・BAD・MISS 0</p>
   <button class="primary full" onclick="submitTrack()">結果を確定する</button>
   <button class="secondary full" onclick="leaveChallenge()">中断して保存</button>
  </div>
@@ -213,7 +310,8 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 <section id="result" class="screen">
  <div class="panel" style="text-align:center">
   <div class="section-title">CERTIFICATION RESULT</div>
-  <div class="result-status silver" id="resultStatus">合格</div>
+  <div id="resultEmblem"></div>
+  <div class="result-status fail" id="resultStatus">不合格</div>
   <div class="life-number" id="resultLife"></div>
   <p class="muted" id="resultClass"></p>
  </div>
@@ -231,36 +329,35 @@ main{max-width:520px;margin:auto;padding:10px 15px 100px}
 
 <section id="history" class="screen">
  <div class="section-title">RECORD & HISTORY</div>
- <div class="panel">
-  <div class="stat-heading">全体成績</div>
-  <div class="detail-row"><span>挑戦回数</span><strong id="statAttempts">0</strong></div>
-  <div class="detail-row"><span>合格回数</span><strong id="statPasses">0</strong></div>
-  <div class="detail-row"><span>不合格回数</span><strong id="statFails">0</strong></div>
-  <div class="detail-row"><span>合格率</span><strong id="statRate">—</strong></div>
-  <div class="detail-row"><span>最高残りLIFE</span><strong id="statBest">—</strong></div>
+ <div class="stat-menu">
+  <button onclick="toggleStat('classStatsSection')"><span>◆　クラス別成績</span><span>›</span></button>
+  <button onclick="toggleStat('songStatsSection')"><span>♫　楽曲統計</span><span>›</span></button>
+  <button onclick="toggleStat('historySection')"><span>▤　挑戦履歴</span><span>›</span></button>
  </div>
-
- <div class="panel">
-  <div class="stat-heading">クラス別成績</div>
-  <div id="classStats"></div>
+ <div class="stat-section" id="classStatsSection">
+  <div class="panel">
+   <div class="stat-heading">CLASS PERFORMANCE</div>
+   <div id="classStats"></div>
+  </div>
  </div>
-
- <div class="panel">
-  <div class="stat-heading">楽曲抽選統計</div>
-  <p class="muted">ランダム抽選で選ばれた回数と出現率。再挑戦による重複は含みません。</p>
-  <div class="detail-row"><span>抽選された曲数（延べ）</span><strong id="songDrawTotal">0</strong></div>
-  <div id="songStats"></div>
+ <div class="stat-section" id="songStatsSection">
+  <div class="panel">
+   <div class="stat-heading">SONG STATISTICS</div>
+   <p class="muted">ランダム抽選で選ばれた回数と出現率。再挑戦による重複は含みません。</p>
+   <div class="detail-row"><span>抽選された曲数（延べ）</span><strong id="songDrawTotal">0</strong></div>
+   <div id="songStats"></div>
+  </div>
  </div>
-
- <div class="section-title">HISTORY</div>
- <div class="panel" id="historyList"></div>
- <button class="secondary full" onclick="clearHistory()">記録・統計をすべて削除</button>
+ <div class="stat-section" id="historySection">
+  <div class="panel" id="historyList"></div>
+  <button class="secondary full" onclick="clearHistory()">記録・統計をすべて削除</button>
+ </div>
 </section>
 
 <section id="detail" class="screen">
  <div class="section-title">RECORD DETAIL</div>
  <div class="panel" id="detailContent"></div>
- <button class="secondary full" onclick="go('history')">記録一覧へ戻る</button>
+ <button class="secondary full" onclick="go('history');toggleStat('historySection',true)">記録一覧へ戻る</button>
 </section>
 </main>
 
@@ -286,8 +383,6 @@ const songs={
 29:["Grave of Halo","リーサルドーズ・パラノイド","幽霊船戦","夢色ワンダー","ヒャダインのじょーじょーゆーじょー","PSYCHO","Monsters and Men","FIRE BIRD"],
 30:["KINGWORLD","六兆年と一夜物語"]
 };
-
-const diffColors={EASY:"#65c995",NORMAL:"#FEBB54",HARD:"#FC93B6",EXPERT:"#9A93FE"};
 
 let selected=5;
 let secretUnlocked=localStorage.getItem("holoSecretUnlocked")==="true";
@@ -346,6 +441,12 @@ function go(id){
  if(id==="home")renderHome();
  if(id==="classes")renderClass();
  if(id==="history")renderHistory();
+}
+function toggleStat(id,forceOpen=false){
+ const section=document.getElementById(id);
+ const wasOpen=section.classList.contains("open");
+ document.querySelectorAll(".stat-section").forEach(s=>s.classList.remove("open"));
+ if(forceOpen||!wasOpen)section.classList.add("open");
 }
 function renderRail(){
  const rail=document.getElementById("classRail");
@@ -461,7 +562,6 @@ function drawSongs(){
  }
 
  countSongDraws(chosen);
-
  track=0;
  life=c.life;
  lifeMax=c.life;
@@ -545,15 +645,19 @@ function submitTrack(){
  });
  const lost=counts.great+counts.good*2+counts.bad*3+counts.miss*5;
  life=Math.max(0,life-lost);
+
  const ap=Object.values(counts).every(v=>v===0);
- const fc=!ap&&counts.bad===0&&counts.miss===0;
+
+ // FCはGOOD・BAD・MISSがすべて0。
+ // APもこの条件を満たすため、FC以上として扱う。
+ const fc=counts.good===0&&counts.bad===0&&counts.miss===0;
+
  const label=ap?"ALL PERFECT":fc?"FULL COMBO":"";
  trackResults.push({song:chosen[track],counts,lost,life,ap,fc,label});
  activeRecord.tracks=trackResults.slice();
  activeRecord.life=life;
  save();
 
- // LIFEが0になったら残りの曲をプレイせず即不合格
  if(life===0){
   finishChallenge();
   return;
@@ -578,8 +682,41 @@ function leaveChallenge(){
  }
  go("home");
 }
+
+/* 合格ランク判定 */
+function getBadgeRank(record){
+ if(!record.passed)return "";
+
+ const tracks=record.tracks||[];
+
+ const allAP=
+  tracks.length===3&&
+  tracks.every(t=>t.ap);
+
+ // 過去の記録との互換性も考慮
+ const allFC=
+  tracks.length===3&&
+  tracks.every(t=>t.ap||t.fc);
+
+ // 全曲APなら、金合格条件に関係なく金文字・虹背景
+ if(allAP)return "gold-rainbow";
+
+ // 金合格条件：クラスⅩでLIFE15以上残し
+ const goldCondition=
+  record.className==="Ⅹ"&&record.life>=15;
+
+ if(goldCondition){
+  // 金合格条件達成
+  return allFC?"gold-gold":"gold-silver";
+ }
+
+ // 金合格条件未達
+ return allFC?"red-gold":"red-silver";
+}
+
 function finishChallenge(){
  if(!activeRecord||activeRecord.finished)return;
+
  const passed=trackResults.length===3&&life>=1;
  const allAP=trackResults.length===3&&trackResults.every(t=>t.ap);
  const allFC=trackResults.length===3&&trackResults.every(t=>t.ap||t.fc);
@@ -598,16 +735,49 @@ function finishChallenge(){
  activeRecord.finished=true;
  activeRecord.played=true;
  activeRecord.rank=allAP?"AP":allFC?"FC":"NORMAL";
+ activeRecord.badge=getBadgeRank(activeRecord);
  save();
  showResult(activeRecord);
 }
+
+function emblemHTML(className,rank){
+ if(!rank)return "";
+ return `<div class="pass-emblem ${rank}">
+  <div class="emblem-class">${escapeHTML(className)}</div>
+  <div class="emblem-label">合格</div>
+  <div class="emblem-caption">HOLODORI CLASS</div>
+ </div>`;
+}
+
+function smallBadgeHTML(record){
+ if(!record.finished||!record.passed)return "";
+
+ // 保存済みの古いbadgeではなく、現在のルールで再判定
+ const rank=getBadgeRank(record);
+
+ return `<span class="badge-small ${rank}">${escapeHTML(record.className)}</span>`;
+}
+
 function showResult(r){
  const status=document.getElementById("resultStatus");
- status.textContent=r.passed?"合格":"不合格";
- status.className="result-status "+(!r.passed?"fail":r.rank==="AP"?"rainbow":r.rank==="FC"?"gold":"silver");
- document.getElementById("resultLife").textContent="LIFE "+r.life+" / "+r.lifeMax;
- document.getElementById("resultClass").textContent="CLASS "+r.className;
- document.getElementById("retryPrompt").textContent=r.passed?"もう一度挑戦しますか？":"不合格！同じ3曲に再挑戦しますか？";
+
+ // 合格時はエンブレムだけを表示
+ status.textContent=r.passed?"":"不合格";
+ status.style.display=r.passed?"none":"block";
+ status.className="result-status fail";
+
+ document.getElementById("resultEmblem").innerHTML=
+  r.passed?emblemHTML(r.className,getBadgeRank(r)):"";
+
+ document.getElementById("resultLife").textContent=
+  "LIFE "+r.life+" / "+r.lifeMax;
+
+ document.getElementById("resultClass").textContent=
+  "CLASS "+r.className;
+
+ document.getElementById("retryPrompt").textContent=
+  r.passed?"もう一度挑戦しますか？":"不合格！同じ3曲に再挑戦しますか？";
+
  document.getElementById("resultTracks").innerHTML=r.tracks.map((t,i)=>`
   <div class="record">
    <strong>${i+1}. ${escapeHTML(t.song.title)}　Lv.${t.song.level}</strong>
@@ -617,6 +787,7 @@ function showResult(r){
   </div>`).join("");
  go("result");
 }
+
 function retryChallenge(){
  if(!activeRecord||!activeRecord.chosen)return;
  const previous=activeRecord;
@@ -641,27 +812,22 @@ function retryChallenge(){
  showTrack();
  go("challenge");
 }
+
 function renderHome(){
  document.getElementById("homeAttempts").textContent=stats.attempts;
  document.getElementById("homePasses").textContent=stats.passes;
  document.getElementById("homeRate").textContent=stats.attempts?Math.round(stats.passes/stats.attempts*100)+"%":"—";
  const r=history[0];
- document.getElementById("latest").innerHTML=r?recordSummary(r):"まだ記録がありません。";
+ document.getElementById("latest").innerHTML=r?
+  `<div class="record clickable" onclick="openDetail(${r.id})">
+   ${smallBadgeHTML(r)}
+   <strong>CLASS ${escapeHTML(r.className)}　${r.finished?(r.passed?"合格":"不合格"):"未プレイ・中断"}</strong>
+   <small>${escapeHTML(r.date)} · LIFE ${r.life}/${r.lifeMax}</small>
+   <small>タップして詳細を見る ›</small>
+  </div>`:"まだ記録がありません。";
 }
-function recordSummary(r){
- const status=r.finished?(r.passed?"合格":"不合格"):"未プレイ・中断";
- return `<strong>CLASS ${escapeHTML(r.className)}　${status}</strong>
- <small class="muted">${escapeHTML(r.date)} · LIFE ${r.life}/${r.lifeMax}</small>
- <small class="muted">タップして詳細を見る ›</small>
- <div onclick="openDetail(${r.id})" style="position:absolute;inset:0"></div>`;
-}
-function renderHistory(){
- document.getElementById("statAttempts").textContent=stats.attempts;
- document.getElementById("statPasses").textContent=stats.passes;
- document.getElementById("statFails").textContent=Math.max(0,stats.attempts-stats.passes);
- document.getElementById("statRate").textContent=stats.attempts?Math.round(stats.passes/stats.attempts*100)+"%":"—";
- document.getElementById("statBest").textContent=stats.attempts?stats.best:"—";
 
+function renderHistory(){
  const classStats=document.getElementById("classStats");
  classStats.innerHTML=classes.map(c=>{
   const s=stats.byClass[c.name]||{attempts:0,passes:0,best:0};
@@ -692,14 +858,20 @@ function renderHistory(){
   <div class="record clickable" role="button" tabindex="0"
    onclick="openDetail(${r.id})"
    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDetail(${r.id})}">
+   ${smallBadgeHTML(r)}
    <strong>CLASS ${escapeHTML(r.className)}　${r.finished?(r.passed?"合格":"不合格"):"未プレイ・中断"}</strong>
    <small>${escapeHTML(r.date)} · LIFE ${r.life}/${r.lifeMax}</small>
    <small>タップして詳細を見る</small>
   </div>`).join(""):"記録はありません。";
 }
+
 function openDetail(id){
  const r=history.find(x=>x.id===id);
  if(!r)return;
+
+ // 履歴詳細も現在の判定ルールで再計算
+ const rank=getBadgeRank(r);
+
  const tracks=[0,1,2].map(i=>{
   const t=(r.tracks||[])[i];
   let title="?";
@@ -716,15 +888,17 @@ function openDetail(id){
  }).join("");
 
  document.getElementById("detailContent").innerHTML=`
+  ${r.finished&&r.passed?emblemHTML(r.className,rank):""}
   <div class="big">CLASS ${escapeHTML(r.className)}</div>
-  <p>${r.finished?(r.passed?"合格":"不合格"):"未プレイ・中断"}</p>
+  ${!r.passed?`<p>${r.finished?"不合格":"未プレイ・中断"}</p>`:""}
   <p class="muted">${escapeHTML(r.date)}</p>
   <div class="detail-row"><span>残りLIFE</span><strong>${r.life}/${r.lifeMax}</strong></div>
   ${tracks}
   ${!r.finished?`<button class="primary full" onclick="resumeRecord(${r.id})">この記録から再開する</button>`:""}
-  <button class="secondary full" onclick="deleteRecord(${r.id});go('history')">この記録を削除</button>`;
+  <button class="secondary full" onclick="deleteRecord(${r.id});go('history');toggleStat('historySection',true)">この記録を削除</button>`;
  go("detail");
 }
+
 function resumeRecord(id){
  const r=history.find(x=>x.id===id);
  if(!r||r.finished)return;
@@ -756,7 +930,7 @@ function resumeRecord(id){
  }
  r.played=true;
  save();
- if(track===0&&r.tracks.length===0){
+ if(track===0&&trackResults.length===0){
   go("draw");
   animateDraw("start");
  }else{
@@ -764,6 +938,7 @@ function resumeRecord(id){
   go("challenge");
  }
 }
+
 function deleteRecord(id){
  history=history.filter(r=>r.id!==id);
  save();
