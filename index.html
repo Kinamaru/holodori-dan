@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -458,9 +457,17 @@ function confirmClass(){
  document.getElementById("confirmLife").textContent="LIFE "+c.life;
  go("confirm");
 }
-function pickSong(level){
+function pickSong(level, weightedInfinityFirstTrack=false){
  const possible=Array.isArray(level)?level:[level];
- const lv=possible[Math.floor(Math.random()*possible.length)];
+ let lv;
+
+ // ∞クラスの1曲目だけ、Lv.29：60%／Lv.30：40%
+ if(weightedInfinityFirstTrack&&possible.includes(29)&&possible.includes(30)){
+  lv=Math.random()<0.6?29:30;
+ }else{
+  lv=possible[Math.floor(Math.random()*possible.length)];
+ }
+
  const pool=songs[lv];
  if(!pool||!pool.length)throw new Error("Lv."+lv+"の曲リストがありません");
  return {title:pool[Math.floor(Math.random()*pool.length)],level:lv,diff:"EXPERT"};
@@ -491,7 +498,9 @@ function animateDraw(action){
 function drawSongs(){
  const c=classes[selected];
  try{
-  chosen=c.levels.map(pickSong);
+  chosen=c.levels.map((level,index)=>
+    pickSong(level,c.name==="∞"&&index===0)
+   );
  }catch(e){alert("抽選に失敗しました："+e.message);return;}
  countSongDraws(chosen);
  track=0;life=c.life;lifeMax=c.life;trackResults=[];currentId=Date.now();
@@ -632,6 +641,20 @@ function showResult(r){
  go("result");
 }
 
+/* Canvasの角丸矩形：roundRect非対応環境にも対応 */
+function roundedRectPath(ctx,x,y,w,h,r){
+ if(typeof ctx.roundRect==="function"){
+  ctx.roundRect(x,y,w,h,r);
+  return;
+ }
+ ctx.moveTo(x+r,y);
+ ctx.arcTo(x+w,y,x+w,y+h,r);
+ ctx.arcTo(x+w,y+h,x,y+h,r);
+ ctx.arcTo(x,y+h,x,y,r);
+ ctx.arcTo(x,y,x+w,y,r);
+ ctx.closePath();
+}
+
 /* 共有画像：元のシンプルな青系デザイン */
 function makeShareImage(record){
  const canvas=document.createElement("canvas");
@@ -673,7 +696,7 @@ function makeShareImage(record){
  palette.forEach((c,i)=>grad.addColorStop(i/(palette.length-1),c));
 
  ctx.beginPath();
- ctx.roundRect(330,175,420,420,42);
+ roundedRectPath(ctx,330,175,420,420,42);
  ctx.fillStyle=grad;ctx.fill();
 
  let borderColor="#ffffff";
@@ -682,7 +705,7 @@ function makeShareImage(record){
  }
  ctx.strokeStyle=borderColor;ctx.lineWidth=10;ctx.stroke();
 
- ctx.beginPath();ctx.roundRect(352,197,376,376,30);
+ ctx.beginPath();roundedRectPath(ctx,352,197,376,376,30);
  ctx.strokeStyle=infinity?"#d8c4ed":"#ffffffb0";
  ctx.lineWidth=5;ctx.stroke();
 
@@ -712,7 +735,7 @@ function makeShareImage(record){
  ctx.fillStyle="#6d7d96";ctx.font="bold 25px sans-serif";
  ctx.fillText("CLASS "+record.className,540,725);
 
- ctx.beginPath();ctx.roundRect(75,770,930,450,30);
+ ctx.beginPath();roundedRectPath(ctx,75,770,930,450,30);
  ctx.fillStyle="#ffffff";ctx.fill();
  ctx.strokeStyle="#dce6f5";ctx.lineWidth=3;ctx.stroke();
 
